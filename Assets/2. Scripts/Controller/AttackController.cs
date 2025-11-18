@@ -17,14 +17,21 @@ public class AttackController : MonoBehaviour
 
      */
 
-    [SerializeField] private GameObject _projectilePrefab;
-    [SerializeField] private float _projectileSpeed;
-    private Transform _monsterTransform;
-    [SerializeField] private float _attackRange;
-    private float _distanceToMonster;
+    [SerializeField] private GameObject _projectilePrefab; // 투사체 
+    [SerializeField] private float _projectileSpeed; // 투사체 이동 속도
+    private Transform _monsterTransform; // 범위 내 있는 적 하나에 대한 정보
+
+    [SerializeField] private float _attackRange; // 공격범위 
+    private float _distanceToMonster; // 몬스터와 거리 
 
     private void Update()
     {
-        
+        /*
+         
+        공격 범위 안에 몬스터가 있다면
+            그 몬스터를 타겟으로 설정
+            그 몬스터를 공격 
+         
+         */
     }
 }

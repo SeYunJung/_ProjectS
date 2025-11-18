@@ -21,7 +21,7 @@ public class MovementController : MonoBehaviour
 
     private void Update()
     {
-        _directionToTarget = (_targetPosition - transform.position).normalized;
-        transform.position += (_directionToTarget * _moveSpeed) * Time.deltaTime;
+        //_directionToTarget = (_targetPosition - transform.position).normalized;
+        //transform.position += (_directionToTarget * _moveSpeed) * Time.deltaTime;
     }
 }
