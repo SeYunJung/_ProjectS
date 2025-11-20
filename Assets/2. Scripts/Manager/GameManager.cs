@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public MonsterSpawnManager monsterSpawnManager {  get; private set; }
+    public ObjectPool objectPool { get; private set; }
 
     [SerializeField] private int _waveNumber;
 
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         monsterSpawnManager = GetComponentInChildren<MonsterSpawnManager>();
+        objectPool = GetComponentInChildren<ObjectPool>();
 
         GameStart();
     }

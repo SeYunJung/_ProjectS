@@ -48,9 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d918f46272f3d5449b424d70250b42b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectilePrefab: {fileID: 0}
-  _projectileSpeed: 0
-  _attackRange: 0
 --- !u!114 &8797871128715057798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +63,10 @@ MonoBehaviour:
   stat: {fileID: 0}
   moveSpeed: 0
   target: {fileID: 0}
+  _attackRange: 3
+  _attackDelay: 5
+  _projectile: {fileID: 531064168716629767, guid: 8e310e85ec20f5a4fa3bb68558639723, type: 3}
+  _projectileSpawnPoint: {fileID: 3809064223953680418}
 --- !u!114 &5644083419284103931
 MonoBehaviour:
   m_ObjectHideFlags: 0
