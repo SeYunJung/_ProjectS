@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public CharacterStat stat;
+    protected CharacterStat stat;
     public float moveSpeed;
     public Transform target;
 

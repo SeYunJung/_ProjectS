@@ -52,4 +52,14 @@ public class Monster : Character
 
         transform.position += (_directionToTarget * stat.speed) * Time.deltaTime;
     }
+
+    public void SetHealth(float value)
+    {
+        stat.SetHealth(value);
+    }
+
+    public float GetHealth()
+    {
+        return stat.health;
+    }
 }

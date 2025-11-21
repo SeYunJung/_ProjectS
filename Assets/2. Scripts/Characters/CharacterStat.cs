@@ -21,7 +21,7 @@ public class CharacterStat : MonoBehaviour
         switch (waveNumber)
         {
             case 0:
-                this.health = 100.0f;
+                this.health = 5.0f;
                 this.speed = speed;
                 this.target = target;
                 break;
@@ -33,5 +33,12 @@ public class CharacterStat : MonoBehaviour
     {
         this.health = 100.0f;
         this.attackSpeed = 1.0f;
+    }
+
+    public void SetHealth(float value)
+    {
+        Debug.Log($"변화전 체력 : {health}");
+        health += value;
+        Debug.Log($"변화후 체력 : {health}");
     }
 }

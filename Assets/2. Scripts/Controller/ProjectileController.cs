@@ -61,6 +61,7 @@ public class ProjectileController : MonoBehaviour
     private Vector3 _directionToTarget;
     private float _distanceToTarget;
     private float _projectileSpeed;
+    [SerializeField] private float _power;
 
     private bool _isReady;
 
@@ -87,17 +88,19 @@ public class ProjectileController : MonoBehaviour
             if (_distanceToTarget <= 0.01f)
             {
                 Debug.Log("몬스터에게 닿음");
-                Destroy(gameObject);
-                Destroy(_target);
-                Debug.Log("파괴");
+                gameObject.SetActive(false);
+
+                // 몬스터 체력 감소
+                _target.SetHealth(-_power);
+
+                // 몬스터 체력이 0미만이면
+                if(_target.GetHealth() < 0)
+                {
+                    // 몬스터 파괴 
+                    Destroy(_target.gameObject);
+                    Debug.Log("파괴");
+                }
             }
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //if (collision.gameObject == gameObject) return;
-
-        //Destroy(collision.gameObject);
     }
 }

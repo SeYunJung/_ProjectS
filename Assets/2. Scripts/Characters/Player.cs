@@ -15,10 +15,9 @@ public class Player : Character
     [SerializeField] private float _attackRange;
     private float _distanceToTarget;
     private float _distanceToAttackTarget;
-    private Monster _targetMonster;
+    public Monster _targetMonster; // private
     [SerializeField] private float _attackDelay;
-    private State _currentState;
-    private bool _isAttacking;
+    public State _currentState; // private
     [SerializeField] private GameObject _projectile;
     [SerializeField] private Transform _projectileSpawnPoint;
 
@@ -53,9 +52,9 @@ public class Player : Character
             case State.Search:
                 SearchTarget();
                 break;
-            case State.Attack:
-                _isAttacking = true;
-                break;
+            //case State.Attack:
+            //    StartCoroutine(AttackTarget());
+            //    break;
         }
     }
 
@@ -83,55 +82,40 @@ public class Player : Character
         {
             // 공격 상태로 전환
             _currentState = State.Attack;
-        }
-
-        // 몬스터가 공격범위 안에 있으면 
-            // 투사체 생성
-            // 투사체가 적에게 이동
-            // 투사체가 적에게 닿으면 사라지기
-    }
-
-    private void FixedUpdate()
-    {
-        if (_isAttacking)
-        {
-            StartCoroutine(Attack());
+            StartCoroutine(AttackTarget());
         }
     }
 
-    private IEnumerator Attack()
+    private IEnumerator AttackTarget()
     {
-        // 타겟 몬스터가 없으면
-        if (_targetMonster == null)
+        while(_currentState == State.Attack)
         {
-            // 탐색 상태로 전환
-            _currentState = State.Search;
-            //yield return null;
-            yield break;
+            // 타겟 몬스터가 없으면
+            if (_targetMonster == null)
+            {
+                // 탐색 상태로 전환
+                _currentState = State.Search;
+                yield break;
+            }
+
+            // 타겟 몬스터가 공격 범위 안에서 벗어났으면
+            _distanceToAttackTarget = Vector3.Distance(_targetMonster.transform.position, transform.position);
+            if (_distanceToAttackTarget > _attackRange)
+            {
+                _targetMonster = null;
+                _currentState = State.Search;
+                yield break;
+            }
+
+            // 투사체 생성 
+            SpawnProjectile();
+
+            yield return new WaitForSeconds(_attackDelay);
         }
-
-        // 타겟 몬스터가 공격 범위 안에서 벗어났으면
-        _distanceToAttackTarget = Vector3.Distance(_targetMonster.transform.position, transform.position);
-        if (_distanceToAttackTarget > _attackRange)
-        {
-            _targetMonster = null;
-            _currentState = State.Search;
-            //yield return null;
-            yield break;
-        }
-
-        // 투사체 생성 
-        SpawnProjectile();
-
-        // 공격 쿨타임
-        Debug.Log("쿨타임 시작");
-        yield return new WaitForSeconds(_attackDelay);
-        Debug.Log("쿨타임 끝");
     }
 
     private void SpawnProjectile()
     {
-        //
         GameObject obj = _objectPool.SpawnFromPool("jsy", _projectileSpawnPoint.position, Quaternion.identity);
 
         bool isProjectile = obj.TryGetComponent(out ProjectileController projectileController);
@@ -139,19 +123,5 @@ public class Player : Character
         {
             projectileController.Init(_targetMonster); // 목표 위치, 목표를 바라보는 방향 초기화 
         }
-
-        //GameObject go = Instantiate(_projectile, _projectileSpawnPoint);
-
-        //bool isProjectile = go.TryGetComponent(out ProjectileController projectileController);
-        //if (isProjectile)
-        //{
-        //    // 초기화 
-        //    // 어떤 초기화를 하는데? 목표대상 정보를 주면 그 대상으로 투사체가 날라갈 수 있도록 하는 정보를 초기화한다. 
-        //    // 그러면 목표대상 정보만 주면 되겠네. 
-        //    projectileController.Init(_targetMonster); // 목표 위치, 목표를 바라보는 방향 초기화 
-        //}
-
-        //// 일단은 그냥 생성하자. 
-        //// 그리고나서 뭐가 안 좋은게 있으면 오브젝트 풀링 적용하자. 
     }
 }
