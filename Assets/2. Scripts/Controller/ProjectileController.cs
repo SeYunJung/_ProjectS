@@ -56,6 +56,7 @@ public class ProjectileController : MonoBehaviour
     목표 위치 
 
      */
+
     private Monster _target;
     private Transform _targetTransform;
     private Vector3 _directionToTarget;
@@ -63,7 +64,10 @@ public class ProjectileController : MonoBehaviour
     private float _projectileSpeed;
     [SerializeField] private float _power;
 
-    private bool _isReady;
+    // 참조 변수
+    private GameManager _gameManager;
+    private List<Monster> _monsterList;
+
 
     // 투사체 초기화 함수
     // 목표 위치, 목표를 바라보는 방향 초기화 
@@ -72,6 +76,9 @@ public class ProjectileController : MonoBehaviour
         _target = monster;
         _targetTransform = monster.transform;
         _projectileSpeed = 4.0f;
+
+        _gameManager = GameManager.instance;
+        _monsterList = GameManager.instance.monsterSpawnManager.monsterList;
     }
 
     // 투사체 이동
@@ -97,6 +104,14 @@ public class ProjectileController : MonoBehaviour
                 {
                     // 몬스터 파괴 
                     Destroy(_target.gameObject);
+                    _monsterList.Remove(_target);
+
+                    // 마지막 웨이브이면서 monsterList 크기가 0이면 
+                    if (_gameManager.isEndGame() && _monsterList.Count == 0)
+                    {
+                        // 게임 종료 
+                        _gameManager.EndGame();
+                    }
                 }
             }
         }

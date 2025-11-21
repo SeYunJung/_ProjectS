@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public ObjectPool objectPool { get; private set; }
     public UIManager uiManager { get; private set; }
 
-    [SerializeField] private int _waveNumber;
+    public int waveNumber;
 
     [field:SerializeField] public Player player {  get; set; }
 
@@ -35,12 +35,17 @@ public class GameManager : MonoBehaviour
         player.Init();
 
         // 웨이브 시작 
-        StartCoroutine(monsterSpawnManager.WaveStart(_waveNumber));
+        StartCoroutine(monsterSpawnManager.WaveStart());
     }
 
-    public void EndGame(int finalWave)
+    public void EndGame()
     {
         StopAllCoroutines();
-        uiManager.ActiveResultPanel(finalWave);
+        uiManager.ActiveResultPanel(waveNumber);
+    }
+
+    public bool isEndGame()
+    {
+        return waveNumber == Constants.FinalWave;
     }
 }

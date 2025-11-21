@@ -124,4 +124,20 @@ public class Player : Character
             projectileController.Init(_targetMonster); // 목표 위치, 목표를 바라보는 방향 초기화 
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == 7)
+        {
+            // 플레이어 체력 감소
+            stat.SetHealth(-5);
+
+            // 플레이어 체력 < 0
+            if(stat.health < 0)
+            {
+                // 게임오버 
+                _gameManager.EndGame();
+            }
+        }
+    }
 }

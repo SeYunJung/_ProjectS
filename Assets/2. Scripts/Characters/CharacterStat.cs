@@ -36,12 +36,13 @@ public class CharacterStat : MonoBehaviour
     // 플레이어 스탯 초기화
     public void Init()
     {
-        this.health = 100.0f;
+        this.health = 10.0f;
         this.attackSpeed = 1.0f;
     }
 
     public void SetHealth(float value)
     {
         health += value;
+        Debug.Log($"플레이어 체력 : {health}");
     }
 }
