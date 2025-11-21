@@ -52,9 +52,6 @@ public class Player : Character
             case State.Search:
                 SearchTarget();
                 break;
-            //case State.Attack:
-            //    StartCoroutine(AttackTarget());
-            //    break;
         }
     }
 

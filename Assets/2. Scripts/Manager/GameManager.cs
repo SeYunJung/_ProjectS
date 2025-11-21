@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public ObjectPool objectPool { get; private set; }
     public UIManager uiManager { get; private set; }
 
-    public int waveNumber;
+    private int _currentWaveNumber;
 
     [field:SerializeField] public Player player {  get; set; }
 
@@ -41,11 +41,16 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         StopAllCoroutines();
-        uiManager.ActiveResultPanel(waveNumber);
+        uiManager.ActiveResultPanel(_currentWaveNumber);
     }
 
     public bool isEndGame()
     {
-        return waveNumber == Constants.FinalWave;
+        return _currentWaveNumber == Constants.FinalWave;
+    }
+
+    public void UpdateCurrentWaveNumber(int waveNumber)
+    {
+        _currentWaveNumber = waveNumber;
     }
 }

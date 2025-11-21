@@ -28,11 +28,11 @@ public class UIManager : MonoBehaviour
         ui.SetActive(false);
     }
 
-    public void ActiveResultPanel(int finalWave)
+    public void ActiveResultPanel(int lastWaveNumber)
     {
         // ½Â¸® UI ¶ç¿ì±â 
         //_uiResult.ShowResultPanel(finalWave);
-        _uiResult.SetWaveText(finalWave);
+        _uiResult.SetWaveText(lastWaveNumber);
         Active(_uiResult.gameObject);
     }
 

@@ -70,16 +70,12 @@ public class MonsterSpawnManager : MonoBehaviour
             Debug.Log($"{i+1}번 웨이브 몬스터 소환 끝");
             _monsterCount = 0;
 
-            _gameManager.waveNumber = i + 1;
+            _gameManager.UpdateCurrentWaveNumber(i + 1);
             
             // n초 후 다음 웨이브 시작. 
             yield return new WaitForSeconds(_waveDelay);
             Debug.Log("다음 웨이브가 시작됩니다.");
         }
-
-        // 모든 웨이브가 끝 == 게임 클리어 
-        // 플레이어 죽든 말든 웨이브 끝나면 게임 클리어? -> 이상하다. 
-        //_gameManager.EndGame();
     }
 
     private void SpawnMonster(int waveNumber)

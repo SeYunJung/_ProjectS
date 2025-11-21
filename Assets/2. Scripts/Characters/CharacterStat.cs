@@ -43,6 +43,5 @@ public class CharacterStat : MonoBehaviour
     public void SetHealth(float value)
     {
         health += value;
-        Debug.Log($"플레이어 체력 : {health}");
     }
 }
