@@ -24,10 +24,13 @@ public class MonsterSpawnManager : MonoBehaviour
     [SerializeField] private float _spawnTime; // 몬스터 스폰 주기
     [SerializeField] private Transform[] _targetPoints; // 몬스터 이동 경로 (여러 곳으로 이동할 수 있다)
     [SerializeField] private int[] _waveMonsterCount; // 웨이브별 몬스터 스폰 수 
+    [SerializeField] private float _waveDelay;
     private int _monsterCount;
     public List<Monster> monsterList { get; private set; }
 
     private GameManager _gameManager;
+
+    private int _finalWave;
 
     // 스폰할 몬스터들 저장 -> 필요없다. => 특정 몬스터를 지정해서 스폰할 필요가 없기 때문 
     //public void Init()
@@ -47,19 +50,36 @@ public class MonsterSpawnManager : MonoBehaviour
         monsterList = new List<Monster>();
     }
 
-    public IEnumerator StartWave(int waveNumber)
+    public IEnumerator WaveStart(int waveNumber)
     {
-        while (_monsterCount != _waveMonsterCount[waveNumber])
+        for(int i = 0; i < _waveMonsterCount.Length; i++)
         {
-            // 일정 시간 기다리고 
-            yield return new WaitForSeconds(_spawnTime);
+            Debug.Log($"{i}번 웨이브 시작");
 
-            // 몬스터 스폰
-            SpawnMonster(waveNumber);
+            // i번째 웨이브 시작
+            while(_monsterCount != _waveMonsterCount[i])
+            {
+                yield return new WaitForSeconds(_spawnTime);
 
-            // 몬스터 수 증가
-            _monsterCount++;
+                // i번 웨이브 몬스터 스폰
+                SpawnMonster(i);
+
+                // i번 웨이브 몬스터 수 증가
+                _monsterCount++;
+            }
+
+            Debug.Log($"{i}번 웨이브 몬스터 소환 끝");
+            _monsterCount = 0;
+
+            _finalWave = i + 1;
+
+            // n초 후 다음 웨이브 시작. 
+            yield return new WaitForSeconds(_waveDelay);
+            Debug.Log("다음 웨이브가 시작됩니다.");
         }
+
+        // 모든 웨이브가 끝 == 게임 클리어 
+        _gameManager.EndGame(_finalWave);
     }
 
     private void SpawnMonster(int waveNumber)
@@ -75,6 +95,14 @@ public class MonsterSpawnManager : MonoBehaviour
                 Monster monster = spawnMonster.GetComponent<Monster>();
                 monsterList.Add(monster);
                 monster.Init(waveNumber, _targetPoints, _gameManager.player.transform); // 몬스터 상태 초기화 -> 스탯, 이동, 플레이어 정보  
+
+                break;
+            case 1:
+
+                GameObject spawnMonster1 = Instantiate(_monsterPrefabList[waveNumber], _spawnPoint.position, Quaternion.identity);
+                Monster monster1 = spawnMonster1.GetComponent<Monster>();
+                monsterList.Add(monster1);
+                monster1.Init(waveNumber, _targetPoints, _gameManager.player.transform);
 
                 break;
         }

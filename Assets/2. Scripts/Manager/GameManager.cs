@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 
     public MonsterSpawnManager monsterSpawnManager {  get; private set; }
     public ObjectPool objectPool { get; private set; }
+    public UIManager uiManager { get; private set; }
 
     [SerializeField] private int _waveNumber;
 
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     {
         monsterSpawnManager = GetComponentInChildren<MonsterSpawnManager>();
         objectPool = GetComponentInChildren<ObjectPool>();
+        uiManager = GetComponentInChildren<UIManager>();
 
         GameStart();
     }
@@ -33,6 +35,12 @@ public class GameManager : MonoBehaviour
         player.Init();
 
         // 웨이브 시작 
-        StartCoroutine(monsterSpawnManager.StartWave(_waveNumber));
+        StartCoroutine(monsterSpawnManager.WaveStart(_waveNumber));
+    }
+
+    public void EndGame(int finalWave)
+    {
+        StopAllCoroutines();
+        uiManager.ActiveResultPanel(finalWave);
     }
 }

@@ -21,13 +21,8 @@ public class Monster : Character
         _movementDirection = Vector2.zero;
         _targetPoints = targetPoints;
 
-        switch (waveNumber)
-        {
-            case 0:
-                stat.Init(waveNumber, moveSpeed, player); // 스탯 초기화 
-                _targetPos = _targetPoints[_targetPointIndex].position;
-                break;
-        }
+        stat.Init(waveNumber, moveSpeed, player); 
+        _targetPos = _targetPoints[_targetPointIndex].position;
     }
 
     // 이동 처리

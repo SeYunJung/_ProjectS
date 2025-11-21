@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -5138086015466161891}
   - component: {fileID: 9062979478783854659}
   m_Layer: 0
-  m_Name: Monster
+  m_Name: Monster1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ada17a669fdd594ba2f1382be9af275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: {fileID: 0}
   moveSpeed: 1
   target: {fileID: 0}
 --- !u!114 &-5138086015466161891

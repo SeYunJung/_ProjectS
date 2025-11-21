@@ -87,7 +87,6 @@ public class ProjectileController : MonoBehaviour
             // 몬스터에 근접해지면 
             if (_distanceToTarget <= 0.01f)
             {
-                Debug.Log("몬스터에게 닿음");
                 gameObject.SetActive(false);
 
                 // 몬스터 체력 감소
@@ -98,7 +97,6 @@ public class ProjectileController : MonoBehaviour
                 {
                     // 몬스터 파괴 
                     Destroy(_target.gameObject);
-                    Debug.Log("파괴");
                 }
             }
         }

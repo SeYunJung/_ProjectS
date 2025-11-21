@@ -25,6 +25,11 @@ public class CharacterStat : MonoBehaviour
                 this.speed = speed;
                 this.target = target;
                 break;
+            case 1:
+                this.health = 1.0f;
+                this.speed = speed;
+                this.target = target;
+                break;
         }
     }
 
@@ -37,8 +42,6 @@ public class CharacterStat : MonoBehaviour
 
     public void SetHealth(float value)
     {
-        Debug.Log($"변화전 체력 : {health}");
         health += value;
-        Debug.Log($"변화후 체력 : {health}");
     }
 }
