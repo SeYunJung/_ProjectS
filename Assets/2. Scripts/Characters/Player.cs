@@ -26,6 +26,7 @@ public class Player : Character
     private MonsterSpawnManager _monsterSpawnManager;
     private ObjectPool _objectPool;
     private List<Monster> _monsterList;
+    private UIInteraction _interaction;
 
 
     // 플레이어 초기화
@@ -37,6 +38,8 @@ public class Player : Character
         _monsterSpawnManager = _gameManager.monsterSpawnManager;
         _objectPool = _gameManager.objectPool;
         _monsterList = _monsterSpawnManager.monsterList;
+        _interaction = GetComponent<UIInteraction>();
+        _interaction.Init();
 
         // 스탯 초기화 
         stat.Init(); 

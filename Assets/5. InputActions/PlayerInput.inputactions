@@ -7,7 +7,7 @@
             "id": "e026e555-fb71-411e-9150-fcbe58a4aa11",
             "actions": [
                 {
-                    "name": "Interaction",
+                    "name": "UIInteraction",
                     "type": "Button",
                     "id": "6e8e4ea0-ffc3-426e-9ee5-4cdda9194c50",
                     "expectedControlType": "",
@@ -24,7 +24,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interaction",
+                    "action": "UIInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

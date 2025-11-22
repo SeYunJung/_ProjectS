@@ -79,6 +79,8 @@ public class MonsterSpawnManager : MonoBehaviour
     }
 
     // 리펙토링 필요
+    // - n번 웨이브에 여러 종류 몬스터가 나올 수 있게 대비 (여러 몬스터 == 몬스터1, 몬스터2, 보스1, 보스2
+    // - 중복 코드 하나로 통합 
     private void SpawnMonster(int waveNumber)
     {
         switch (waveNumber)

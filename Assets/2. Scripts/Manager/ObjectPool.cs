@@ -15,7 +15,7 @@ public class ObjectPool : MonoBehaviour
     }
 
     public List<Pool> pools;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
+    private Dictionary<string, Queue<GameObject>> _poolDictionary;
 
     [SerializeField] private Transform _projectileSpawnPoint;
 
@@ -30,7 +30,7 @@ public class ObjectPool : MonoBehaviour
 
     private void Start()
     {
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        _poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
         foreach (Pool pool in pools)
         {
@@ -43,27 +43,27 @@ public class ObjectPool : MonoBehaviour
                 objectPool.Enqueue(obj);
             }
 
-            poolDictionary.Add(pool.tag, objectPool);
+            _poolDictionary.Add(pool.tag, objectPool);
         }
     }
 
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
         // 예외 처리 
-        if (!poolDictionary.ContainsKey(tag))
+        if (!_poolDictionary.ContainsKey(tag))
         {
             Debug.LogWarning("Pool with tag " + tag + " doesn't exist");
             return null;
         }
 
-        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+        GameObject objectToSpawn = _poolDictionary[tag].Dequeue();
 
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
 
         // 재사용하기 위해 
-        poolDictionary[tag].Enqueue(objectToSpawn);
+        _poolDictionary[tag].Enqueue(objectToSpawn);
 
         return objectToSpawn;
     }

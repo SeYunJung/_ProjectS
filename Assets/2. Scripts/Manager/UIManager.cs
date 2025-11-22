@@ -15,7 +15,6 @@ public class UIManager : MonoBehaviour
     // 얘네들 모두 띄워주는 용도로 쓰인다. 
     // 따라서 GameObject로 받아오자. 
     [SerializeField] private UIResult _uiResult;
-    [SerializeField] private GameObject _uiMonsterSummon;
     [SerializeField] private RectTransform _uiMonsterSummonRect;
 
     private Vector3 _blockOffset;
@@ -25,6 +24,7 @@ public class UIManager : MonoBehaviour
         _blockOffset = new Vector3(Pos.BLOCK_OFFSET_X, Pos.BLOCK_OFFSET_Y);
     }
 
+    // 가능하다면 활성화/비활성화 메서드 통합할 수 있게 리펙토링
     public void SetActive(GameObject ui, bool isActive)
     {
         ui.SetActive(isActive);
@@ -40,5 +40,15 @@ public class UIManager : MonoBehaviour
     {
         _uiMonsterSummonRect.position = worldPos + _blockOffset;
         SetActive(_uiMonsterSummonRect.gameObject, true);
+    }
+
+    public void InActiveUIMonsterSummon()
+    {
+        SetActive(_uiMonsterSummonRect.gameObject, false);
+    }
+
+    public bool IsActiveUIMonsterSummon()
+    {
+        return _uiMonsterSummonRect.gameObject.activeSelf;
     }
 }
