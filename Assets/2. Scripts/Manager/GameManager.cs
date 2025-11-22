@@ -28,8 +28,9 @@ public class GameManager : MonoBehaviour
 
     private void GameStart()
     {
-        // 스폰매니저 초기화 
+        // 매니저 초기화 
         monsterSpawnManager.Init(this);
+        uiManager.Init();
 
         // 플레이어 초기화
         player.Init();
@@ -41,12 +42,12 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         StopAllCoroutines();
-        uiManager.ActiveResultPanel(_currentWaveNumber);
+        uiManager.ActiveUIResult(_currentWaveNumber);
     }
 
     public bool isEndGame()
     {
-        return _currentWaveNumber == Constants.FinalWave;
+        return _currentWaveNumber == Constants.FINALWAVE;
     }
 
     public void UpdateCurrentWaveNumber(int waveNumber)

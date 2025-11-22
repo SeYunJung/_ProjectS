@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -17,28 +15,30 @@ public class UIManager : MonoBehaviour
     // 얘네들 모두 띄워주는 용도로 쓰인다. 
     // 따라서 GameObject로 받아오자. 
     [SerializeField] private UIResult _uiResult;
+    [SerializeField] private GameObject _uiMonsterSummon;
+    [SerializeField] private RectTransform _uiMonsterSummonRect;
 
-    public void Active(GameObject ui)
+    private Vector3 _blockOffset;
+
+    public void Init()
     {
-        ui.SetActive(true);
+        _blockOffset = new Vector3(Pos.BLOCK_OFFSET_X, Pos.BLOCK_OFFSET_Y);
     }
 
-    public void InActive(GameObject ui)
+    public void SetActive(GameObject ui, bool isActive)
     {
-        ui.SetActive(false);
+        ui.SetActive(isActive);
     }
 
-    public void ActiveResultPanel(int lastWaveNumber)
+    public void ActiveUIResult(int lastWaveNumber)
     {
-        // 승리 UI 띄우기 
-        //_uiResult.ShowResultPanel(finalWave);
         _uiResult.SetWaveText(lastWaveNumber);
-        Active(_uiResult.gameObject);
+        SetActive(_uiResult.gameObject, true);
     }
 
-    public void GameOver()
+    public void ActiveUIMonsterSummon(Vector3 worldPos)
     {
-        // 패배 UI 띄우기 
-        //Active(_uiResult);
+        _uiMonsterSummonRect.position = worldPos + _blockOffset;
+        SetActive(_uiMonsterSummonRect.gameObject, true);
     }
 }
