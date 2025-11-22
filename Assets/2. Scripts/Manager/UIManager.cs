@@ -1,5 +1,11 @@
 using UnityEngine;
 
+public enum UIState
+{
+    Close,
+    Open
+}
+
 public class UIManager : MonoBehaviour
 {
     /*
@@ -16,11 +22,14 @@ public class UIManager : MonoBehaviour
     // 따라서 GameObject로 받아오자. 
     [SerializeField] private UIResult _uiResult;
     [SerializeField] private RectTransform _uiMonsterSummonRect;
+    [SerializeField] private UISummonButton _uiSummonButton;
 
     private Vector3 _blockOffset;
 
     public void Init()
     {
+        _uiSummonButton.Init();
+
         _blockOffset = new Vector3(Pos.BLOCK_OFFSET_X, Pos.BLOCK_OFFSET_Y);
     }
 

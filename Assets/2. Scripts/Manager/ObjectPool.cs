@@ -28,7 +28,7 @@ public class ObjectPool : MonoBehaviour
     }
     #endregion
 
-    private void Start()
+    public void Init()
     {
         _poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
