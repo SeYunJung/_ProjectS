@@ -10,7 +10,7 @@ public enum State
 
 public class Player : Character
 {
-    // ÇÃ·¹ÀÌ¾î °íÀ¯ º¯¼ö
+    // í”Œë ˆì´ì–´ ê³ ìœ  ë³€ìˆ˜
     private float _closestDistSqr;
     [SerializeField] private float _attackRange;
     private float _distanceToTarget;
@@ -21,27 +21,27 @@ public class Player : Character
     [SerializeField] private GameObject _projectile;
     [SerializeField] private Transform _projectileSpawnPoint;
 
-    // ÂüÁ¶ º¯¼ö
+    // ì°¸ì¡° ë³€ìˆ˜
     private GameManager _gameManager;
     private MonsterSpawnManager _monsterSpawnManager;
     private ObjectPool _objectPool;
     private List<Monster> _monsterList;
 
 
-    // ÇÃ·¹ÀÌ¾î ÃÊ±âÈ­
+    // í”Œë ˆì´ì–´ ì´ˆê¸°í™”
     public override void Init()
     {
-        // ÂüÁ¶ ÃÊ±âÈ­
+        // ì°¸ì¡° ì´ˆê¸°í™”
         base.Init();
         _gameManager = GameManager.instance;
         _monsterSpawnManager = _gameManager.monsterSpawnManager;
         _objectPool = _gameManager.objectPool;
         _monsterList = _monsterSpawnManager.monsterList;
 
-        // ½ºÅÈ ÃÊ±âÈ­ 
+        // ìŠ¤íƒ¯ ì´ˆê¸°í™” 
         stat.Init(); 
 
-        // »óÅÂ ÃÊ±âÈ­
+        // ìƒíƒœ ì´ˆê¸°í™”
         _currentState = State.Search;
     }
 
@@ -62,22 +62,22 @@ public class Player : Character
         for (int i = 0; i < _monsterList.Count; i++)
         {
             if (_monsterList[i] == null) continue;
-            // ÇÃ·¹ÀÌ¾î¿Í _monsterList[i]¹øÂ° ¸ó½ºÅÍ¿ÍÀÇ °Å¸® 
+            // í”Œë ˆì´ì–´ì™€ _monsterList[i]ë²ˆì§¸ ëª¬ìŠ¤í„°ì™€ì˜ ê±°ë¦¬ 
             _distanceToTarget = Vector3.Distance(_monsterList[i].transform.position, transform.position);
 
-            // °ø°İ¹üÀ§ ¾È¿¡ ÀÖ°í, ÇöÀç±îÁö °Ë»çÇÑ Àûº¸´Ù °Å¸®°¡ °¡±î¿ì¸é 
+            // ê³µê²©ë²”ìœ„ ì•ˆì— ìˆê³ , í˜„ì¬ê¹Œì§€ ê²€ì‚¬í•œ ì ë³´ë‹¤ ê±°ë¦¬ê°€ ê°€ê¹Œìš°ë©´ 
             if (_distanceToTarget <= _attackRange && _distanceToTarget <= _closestDistSqr)
             {
-                // °¡Àå °¡±î¿î °Å¸® ¾÷µ¥ÀÌÆ®, °ø°İ ´ë»ó À§Ä¡ ÀúÀå 
+                // ê°€ì¥ ê°€ê¹Œìš´ ê±°ë¦¬ ì—…ë°ì´íŠ¸, ê³µê²© ëŒ€ìƒ ìœ„ì¹˜ ì €ì¥ 
                 _closestDistSqr = _distanceToTarget;
                 _targetMonster = _monsterList[i];
             }
         }
 
-        // °ø°İ ´ë»óÀÌ ÁöÁ¤µÇ¸é
+        // ê³µê²© ëŒ€ìƒì´ ì§€ì •ë˜ë©´
         if(_targetMonster != null)
         {
-            // °ø°İ »óÅÂ·Î ÀüÈ¯
+            // ê³µê²© ìƒíƒœë¡œ ì „í™˜
             _currentState = State.Attack;
             StartCoroutine(AttackTarget());
         }
@@ -87,15 +87,15 @@ public class Player : Character
     {
         while(_currentState == State.Attack)
         {
-            // Å¸°Ù ¸ó½ºÅÍ°¡ ¾øÀ¸¸é
+            // íƒ€ê²Ÿ ëª¬ìŠ¤í„°ê°€ ì—†ìœ¼ë©´
             if (_targetMonster == null)
             {
-                // Å½»ö »óÅÂ·Î ÀüÈ¯
+                // íƒìƒ‰ ìƒíƒœë¡œ ì „í™˜
                 _currentState = State.Search;
                 yield break;
             }
 
-            // Å¸°Ù ¸ó½ºÅÍ°¡ °ø°İ ¹üÀ§ ¾È¿¡¼­ ¹ş¾î³µÀ¸¸é
+            // íƒ€ê²Ÿ ëª¬ìŠ¤í„°ê°€ ê³µê²© ë²”ìœ„ ì•ˆì—ì„œ ë²—ì–´ë‚¬ìœ¼ë©´
             _distanceToAttackTarget = Vector3.Distance(_targetMonster.transform.position, transform.position);
             if (_distanceToAttackTarget > _attackRange)
             {
@@ -104,7 +104,7 @@ public class Player : Character
                 yield break;
             }
 
-            // Åõ»çÃ¼ »ı¼º 
+            // íˆ¬ì‚¬ì²´ ìƒì„± 
             SpawnProjectile();
 
             yield return new WaitForSeconds(_attackDelay);
@@ -118,7 +118,7 @@ public class Player : Character
         bool isProjectile = obj.TryGetComponent(out ProjectileController projectileController);
         if (isProjectile)
         {
-            projectileController.Init(_targetMonster); // ¸ñÇ¥ À§Ä¡, ¸ñÇ¥¸¦ ¹Ù¶óº¸´Â ¹æÇâ ÃÊ±âÈ­ 
+            projectileController.Init(_targetMonster); // ëª©í‘œ ìœ„ì¹˜, ëª©í‘œë¥¼ ë°”ë¼ë³´ëŠ” ë°©í–¥ ì´ˆê¸°í™” 
         }
     }
 
@@ -126,13 +126,13 @@ public class Player : Character
     {
         if(collision.gameObject.layer == 7)
         {
-            // ÇÃ·¹ÀÌ¾î Ã¼·Â °¨¼Ò
+            // í”Œë ˆì´ì–´ ì²´ë ¥ ê°ì†Œ
             stat.SetHealth(-5);
 
-            // ÇÃ·¹ÀÌ¾î Ã¼·Â < 0
+            // í”Œë ˆì´ì–´ ì²´ë ¥ < 0
             if(stat.health < 0)
             {
-                // °ÔÀÓ¿À¹ö 
+                // ê²Œì„ì˜¤ë²„ 
                 _gameManager.EndGame();
             }
         }

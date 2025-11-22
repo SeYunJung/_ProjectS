@@ -5,13 +5,13 @@ using UnityEngine.Pool;
 
 public class ObjectPool : MonoBehaviour
 {
-    // Ç® Á¤º¸ Å¬·¡½º. À¯´ÏÆ¼¿¡¼­ º¸ÀÌ±â À§ÇØ Serializable »ç¿ë 
+    // í’€ ì •ë³´ í´ë˜ìŠ¤. ìœ ë‹ˆí‹°ì—ì„œ ë³´ì´ê¸° ìœ„í•´ Serializable ì‚¬ìš© 
     [System.Serializable]
     public class Pool
     {
-        public string tag; // »ı¼ºÇÒ ¿ÀºêÁ§Æ® ÀÌ¸§(ÅÂ±×)
-        public GameObject prefab; // »ı¼ºÇÒ ¿ÀºêÁ§Æ® ÇÁ¸®ÆÕ
-        public int size; // »ı¼ºÇÒ ¿ÀºêÁ§Æ® °³¼ö 
+        public string tag; // ìƒì„±í•  ì˜¤ë¸Œì íŠ¸ ì´ë¦„(íƒœê·¸)
+        public GameObject prefab; // ìƒì„±í•  ì˜¤ë¸Œì íŠ¸ í”„ë¦¬íŒ¹
+        public int size; // ìƒì„±í•  ì˜¤ë¸Œì íŠ¸ ê°œìˆ˜ 
     }
 
     public List<Pool> pools;
@@ -49,7 +49,7 @@ public class ObjectPool : MonoBehaviour
 
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
-        // ¿¹¿Ü Ã³¸® 
+        // ì˜ˆì™¸ ì²˜ë¦¬ 
         if (!poolDictionary.ContainsKey(tag))
         {
             Debug.LogWarning("Pool with tag " + tag + " doesn't exist");
@@ -62,7 +62,7 @@ public class ObjectPool : MonoBehaviour
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
 
-        // Àç»ç¿ëÇÏ±â À§ÇØ 
+        // ì¬ì‚¬ìš©í•˜ê¸° ìœ„í•´ 
         poolDictionary[tag].Enqueue(objectToSpawn);
 
         return objectToSpawn;

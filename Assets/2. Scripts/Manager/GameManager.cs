@@ -28,14 +28,14 @@ public class GameManager : MonoBehaviour
 
     private void GameStart()
     {
-        // ¸Å´ÏÀú ÃÊ±âÈ­ 
+        // ë§¤ë‹ˆì € ì´ˆê¸°í™” 
         monsterSpawnManager.Init(this);
         uiManager.Init();
 
-        // ÇÃ·¹ÀÌ¾î ÃÊ±âÈ­
+        // í”Œë ˆì´ì–´ ì´ˆê¸°í™”
         player.Init();
 
-        // ¿şÀÌºê ½ÃÀÛ 
+        // ì›¨ì´ë¸Œ ì‹œì‘ 
         StartCoroutine(monsterSpawnManager.WaveStart());
     }
 
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
 
     public bool isEndGame()
     {
-        return _currentWaveNumber == Constants.FINALWAVE;
+        return _currentWaveNumber == Wave.FINAL;
     }
 
     public void UpdateCurrentWaveNumber(int waveNumber)

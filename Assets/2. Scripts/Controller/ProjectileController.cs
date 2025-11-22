@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    // Åõ»çÃ¼ ÀÌµ¿ ½ºÅ©¸³Æ®
+    // íˆ¬ì‚¬ì²´ ì´ë™ ìŠ¤í¬ë¦½íŠ¸
 
     /*
-    ¿ªÇÒ
-    - Åõ»çÃ¼ ÀÌµ¿
-    - Åõ»çÃ¼°¡ ¸ñÇ¥¿Í ´êÀ¸¸é ¸ñÇ¥ Ã¼·Â ³·Ãß±â, Åõ»çÃ¼ »ç¶óÁö±â 
+    ì—­í• 
+    - íˆ¬ì‚¬ì²´ ì´ë™
+    - íˆ¬ì‚¬ì²´ê°€ ëª©í‘œì™€ ë‹¿ìœ¼ë©´ ëª©í‘œ ì²´ë ¥ ë‚®ì¶”ê¸°, íˆ¬ì‚¬ì²´ ì‚¬ë¼ì§€ê¸° 
 
-    ÇÊ¿äÇÑ °Í
-    - Åõ»çÃ¼ ÀÌµ¿ : ÁÂÇ¥ ÀÌµ¿ 
-    ½ºÅ¸µğ´Â ¸ó½ºÅÍ°¡ °ø°İ¹ŞÀ» ¶§ ¹Ğ·Á³ª´ø°¡? (¹°¸®Ã³¸®°¡ ÀÖ´Â°¡?) -> Æ¯Á¤Á¶°Ç(?)¿¡¼­ °æÁ÷µÇ´Â °Í ¸»°í´Â ¹Ğ·Á³ª°¡°Å³ª ÇÏ´Â Ã³¸®°¡ ¾ø´Ù. -> Åõ»çÃ¼ ÀÌµ¿µµ ÁÂÇ¥·Î Ã³¸®ÇÏÀÚ. 
+    í•„ìš”í•œ ê²ƒ
+    - íˆ¬ì‚¬ì²´ ì´ë™ : ì¢Œí‘œ ì´ë™ 
+    ìŠ¤íƒ€ë””ëŠ” ëª¬ìŠ¤í„°ê°€ ê³µê²©ë°›ì„ ë•Œ ë°€ë ¤ë‚˜ë˜ê°€? (ë¬¼ë¦¬ì²˜ë¦¬ê°€ ìˆëŠ”ê°€?) -> íŠ¹ì •ì¡°ê±´(?)ì—ì„œ ê²½ì§ë˜ëŠ” ê²ƒ ë§ê³ ëŠ” ë°€ë ¤ë‚˜ê°€ê±°ë‚˜ í•˜ëŠ” ì²˜ë¦¬ê°€ ì—†ë‹¤. -> íˆ¬ì‚¬ì²´ ì´ë™ë„ ì¢Œí‘œë¡œ ì²˜ë¦¬í•˜ì. 
     
-    - Åõ»çÃ¼°¡ ´ê¾ÒÀ» ¶§ ¸ñÇ¥ Ã¼·Â ³·Ãß±â, Åõ»çÃ¼ »ç¶óÁö±â
+    - íˆ¬ì‚¬ì²´ê°€ ë‹¿ì•˜ì„ ë•Œ ëª©í‘œ ì²´ë ¥ ë‚®ì¶”ê¸°, íˆ¬ì‚¬ì²´ ì‚¬ë¼ì§€ê¸°
 
-    - Åõ»çÃ¼ ÃÊ±âÈ­ ÇÔ¼ö : ¸ñÇ¥ À§Ä¡, ÀÌµ¿¼Óµµ, ¸ñÇ¥¸¦ ¹Ù¶óº¸´Â ¹æÇâ ÃÊ±âÈ­ 
+    - íˆ¬ì‚¬ì²´ ì´ˆê¸°í™” í•¨ìˆ˜ : ëª©í‘œ ìœ„ì¹˜, ì´ë™ì†ë„, ëª©í‘œë¥¼ ë°”ë¼ë³´ëŠ” ë°©í–¥ ì´ˆê¸°í™” 
 
-    - º¯¼ö
-    ¸ñÇ¥¸¦ ¹Ù¶óº¸´Â ¹æÇâ
-    Åõ»çÃ¼ ÀÌµ¿¼Óµµ
-    ¸ñÇ¥ À§Ä¡ 
+    - ë³€ìˆ˜
+    ëª©í‘œë¥¼ ë°”ë¼ë³´ëŠ” ë°©í–¥
+    íˆ¬ì‚¬ì²´ ì´ë™ì†ë„
+    ëª©í‘œ ìœ„ì¹˜ 
 
      */
 
@@ -33,13 +33,13 @@ public class ProjectileController : MonoBehaviour
     private float _projectileSpeed;
     [SerializeField] private float _power;
 
-    // ÂüÁ¶ º¯¼ö
+    // ì°¸ì¡° ë³€ìˆ˜
     private GameManager _gameManager;
     private List<Monster> _monsterList;
 
 
-    // Åõ»çÃ¼ ÃÊ±âÈ­ ÇÔ¼ö
-    // ¸ñÇ¥ À§Ä¡, ¸ñÇ¥¸¦ ¹Ù¶óº¸´Â ¹æÇâ ÃÊ±âÈ­ 
+    // íˆ¬ì‚¬ì²´ ì´ˆê¸°í™” í•¨ìˆ˜
+    // ëª©í‘œ ìœ„ì¹˜, ëª©í‘œë¥¼ ë°”ë¼ë³´ëŠ” ë°©í–¥ ì´ˆê¸°í™” 
     public void Init(Monster monster) 
     {
         _target = monster;
@@ -50,35 +50,35 @@ public class ProjectileController : MonoBehaviour
         _monsterList = GameManager.instance.monsterSpawnManager.monsterList;
     }
 
-    // Åõ»çÃ¼ ÀÌµ¿
+    // íˆ¬ì‚¬ì²´ ì´ë™ 
     private void Update()
     {
         if (_target != null)
         {
-            _distanceToTarget = Vector3.Distance(transform.position, _targetTransform.position); // °Å¸®
-            _directionToTarget = (_targetTransform.position - transform.position).normalized; // ¹æÇâ
+            _distanceToTarget = Vector3.Distance(transform.position, _targetTransform.position); // ê±°ë¦¬
+            _directionToTarget = (_targetTransform.position - transform.position).normalized; // ë°©í–¥
 
             transform.position += (_directionToTarget * _projectileSpeed) * Time.deltaTime;
 
-            // ¸ó½ºÅÍ¿¡ ±ÙÁ¢ÇØÁö¸é 
+            // ëª¬ìŠ¤í„°ì— ê·¼ì ‘í•´ì§€ë©´ 
             if (_distanceToTarget <= 0.01f)
             {
                 gameObject.SetActive(false);
 
-                // ¸ó½ºÅÍ Ã¼·Â °¨¼Ò
+                // ëª¬ìŠ¤í„° ì²´ë ¥ ê°ì†Œ
                 _target.SetHealth(-_power);
 
-                // ¸ó½ºÅÍ Ã¼·ÂÀÌ 0¹Ì¸¸ÀÌ¸é
+                // ëª¬ìŠ¤í„° ì²´ë ¥ì´ 0ë¯¸ë§Œì´ë©´
                 if(_target.GetHealth() < 0)
                 {
-                    // ¸ó½ºÅÍ ÆÄ±« 
+                    // ëª¬ìŠ¤í„° íŒŒê´´ 
                     Destroy(_target.gameObject);
                     _monsterList.Remove(_target);
 
-                    // ¸¶Áö¸· ¿şÀÌºêÀÌ¸é¼­ monsterList Å©±â°¡ 0ÀÌ¸é 
+                    // ë§ˆì§€ë§‰ ì›¨ì´ë¸Œì´ë©´ì„œ monsterList í¬ê¸°ê°€ 0ì´ë©´ 
                     if (_gameManager.isEndGame() && _monsterList.Count == 0)
                     {
-                        // °ÔÀÓ Á¾·á 
+                        // ê²Œì„ ì¢…ë£Œ 
                         _gameManager.EndGame();
                     }
                 }

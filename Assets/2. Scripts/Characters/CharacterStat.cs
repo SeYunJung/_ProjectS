@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class CharacterStat : MonoBehaviour
 {
-    // °øÅë ½ºÅÈ
+    // ê³µí†µ ìŠ¤íƒ¯
     public float health { get; private set; }
     public Transform target { get; private set; }
 
-    // ÇÃ·¹ÀÌ¾î ½ºÅÈ
+    // í”Œë ˆì´ì–´ ìŠ¤íƒ¯
     public float attackSpeed { get; private set; }
 
-    // ¸ó½ºÅÍ ½ºÅÈ
+    // ëª¬ìŠ¤í„° ìŠ¤íƒ¯
     public float speed { get; private set; }
 
 
-    // ¸ó½ºÅÍ ½ºÅÈ ÃÊ±âÈ­ 
+    // ëª¬ìŠ¤í„° ìŠ¤íƒ¯ ì´ˆê¸°í™” 
     public void Init(int waveNumber, float speed, Transform target)
     {
         switch (waveNumber)
@@ -33,7 +33,7 @@ public class CharacterStat : MonoBehaviour
         }
     }
 
-    // ÇÃ·¹ÀÌ¾î ½ºÅÈ ÃÊ±âÈ­
+    // í”Œë ˆì´ì–´ ìŠ¤íƒ¯ ì´ˆê¸°í™”
     public void Init()
     {
         this.health = 10.0f;

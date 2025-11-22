@@ -3,17 +3,17 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     /*
-    ±â´É
-    - UI¸¦ Å°°í ²ô±â.
+    ê¸°ëŠ¥
+    - UIë¥¼ í‚¤ê³  ë„ê¸°.
 
 
-    ÇÊ¿äÇÑ º¯¼ö 
-    - ½Â¸® ÆĞ¹è UI
+    í•„ìš”í•œ ë³€ìˆ˜ 
+    - ìŠ¹ë¦¬ íŒ¨ë°° UI
      */
-    // ½Â¸® UI
-    // ÆĞ¹è UI 
-    // ¾ê³×µé ¸ğµÎ ¶ç¿öÁÖ´Â ¿ëµµ·Î ¾²ÀÎ´Ù. 
-    // µû¶ó¼­ GameObject·Î ¹Ş¾Æ¿ÀÀÚ. 
+    // ìŠ¹ë¦¬ UI
+    // íŒ¨ë°° UI 
+    // ì–˜ë„¤ë“¤ ëª¨ë‘ ë„ì›Œì£¼ëŠ” ìš©ë„ë¡œ ì“°ì¸ë‹¤. 
+    // ë”°ë¼ì„œ GameObjectë¡œ ë°›ì•„ì˜¤ì. 
     [SerializeField] private UIResult _uiResult;
     [SerializeField] private GameObject _uiMonsterSummon;
     [SerializeField] private RectTransform _uiMonsterSummonRect;

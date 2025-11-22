@@ -1,10 +1,10 @@
-using System.Numerics;
-
-public static class Constants 
+// 웨이브
+public static class Wave 
 {
-    public const int FINALWAVE = 2;
+    public const int FINAL = 2;
 }
 
+// 좌표
 public static class Pos
 {
     public const float BLOCK_OFFSET_X = 0.14f;

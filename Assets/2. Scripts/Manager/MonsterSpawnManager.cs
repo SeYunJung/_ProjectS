@@ -6,24 +6,24 @@ public class MonsterSpawnManager : MonoBehaviour
 {
     /*
      
-    ÀûÀ» »ı¼º 
+    ì ì„ ìƒì„± 
 
-    Àû »ı¼º¿¡ ÇÊ¿äÇÑ Á¤º¸
-    - ½ºÆù ÁöÁ¡
-    - Àû ¿ÀºêÁ§Æ® (ÇÁ¸®ÆÕ)
+    ì  ìƒì„±ì— í•„ìš”í•œ ì •ë³´
+    - ìŠ¤í° ì§€ì 
+    - ì  ì˜¤ë¸Œì íŠ¸ (í”„ë¦¬íŒ¹)
     
-    ÀûÀ» »ı¼ºÇÏ´Â ¹æ¹ı
+    ì ì„ ìƒì„±í•˜ëŠ” ë°©ë²•
     - Instantiate
 
 
      */
 
-    // ¸ó½ºÅÍ º¯¼ö
-    [SerializeField] private Transform _spawnPoint; // ¸ó½ºÅÍ ½ºÆù ÁöÁ¡ 
-    [SerializeField] private List<GameObject> _monsterPrefabList; // ¸ó½ºÅÍ ÇÁ¸®ÆÕ ¸®½ºÆ®
-    [SerializeField] private float _spawnTime; // ¸ó½ºÅÍ ½ºÆù ÁÖ±â
-    [SerializeField] private Transform[] _targetPoints; // ¸ó½ºÅÍ ÀÌµ¿ °æ·Î (¿©·¯ °÷À¸·Î ÀÌµ¿ÇÒ ¼ö ÀÖ´Ù)
-    [SerializeField] private int[] _waveMonsterCount; // ¿şÀÌºêº° ¸ó½ºÅÍ ½ºÆù ¼ö 
+    // ëª¬ìŠ¤í„° ë³€ìˆ˜
+    [SerializeField] private Transform _spawnPoint; // ëª¬ìŠ¤í„° ìŠ¤í° ì§€ì  
+    [SerializeField] private List<GameObject> _monsterPrefabList; // ëª¬ìŠ¤í„° í”„ë¦¬íŒ¹ ë¦¬ìŠ¤íŠ¸
+    [SerializeField] private float _spawnTime; // ëª¬ìŠ¤í„° ìŠ¤í° ì£¼ê¸°
+    [SerializeField] private Transform[] _targetPoints; // ëª¬ìŠ¤í„° ì´ë™ ê²½ë¡œ (ì—¬ëŸ¬ ê³³ìœ¼ë¡œ ì´ë™í•  ìˆ˜ ìˆë‹¤)
+    [SerializeField] private int[] _waveMonsterCount; // ì›¨ì´ë¸Œë³„ ëª¬ìŠ¤í„° ìŠ¤í° ìˆ˜ 
     [SerializeField] private float _waveDelay;
     [SerializeField] private float _clearDelay;
     private int _monsterCount;
@@ -31,7 +31,7 @@ public class MonsterSpawnManager : MonoBehaviour
 
     private GameManager _gameManager;
 
-    // ½ºÆùÇÒ ¸ó½ºÅÍµé ÀúÀå -> ÇÊ¿ä¾ø´Ù. => Æ¯Á¤ ¸ó½ºÅÍ(º¸½º)¸¦ ÁöÁ¤ÇØ¼­ ½ºÆùÇÒ ÇÊ¿ä°¡ ¾ø±â ¶§¹® 
+    // ìŠ¤í°í•  ëª¬ìŠ¤í„°ë“¤ ì €ì¥ -> í•„ìš”ì—†ë‹¤. => íŠ¹ì • ëª¬ìŠ¤í„°(ë³´ìŠ¤)ë¥¼ ì§€ì •í•´ì„œ ìŠ¤í°í•  í•„ìš”ê°€ ì—†ê¸° ë•Œë¬¸ 
     //public void Init()
     //{
     //    _monsterDict = new Dictionary<string, GameObject>();
@@ -53,41 +53,42 @@ public class MonsterSpawnManager : MonoBehaviour
     {
         for(int i = 0; i < _waveMonsterCount.Length; i++)
         {
-            Debug.Log($"{i+1}¹ø ¿şÀÌºê ½ÃÀÛ");
+            Debug.Log($"{i+1}ë²ˆ ì›¨ì´ë¸Œ ì‹œì‘");
 
-            // i¹øÂ° ¿şÀÌºê ½ÃÀÛ
+            // ië²ˆì§¸ ì›¨ì´ë¸Œ ì‹œì‘
             while(_monsterCount != _waveMonsterCount[i])
             {
                 yield return new WaitForSeconds(_spawnTime);
 
-                // i¹ø ¿şÀÌºê ¸ó½ºÅÍ ½ºÆù
+                // ië²ˆ ì›¨ì´ë¸Œ ëª¬ìŠ¤í„° ìŠ¤í°
                 SpawnMonster(i);
 
-                // i¹ø ¿şÀÌºê ¸ó½ºÅÍ ¼ö Áõ°¡
+                // ië²ˆ ì›¨ì´ë¸Œ ëª¬ìŠ¤í„° ìˆ˜ ì¦ê°€
                 _monsterCount++;
             }
 
-            Debug.Log($"{i+1}¹ø ¿şÀÌºê ¸ó½ºÅÍ ¼ÒÈ¯ ³¡");
+            Debug.Log($"{i+1}ë²ˆ ì›¨ì´ë¸Œ ëª¬ìŠ¤í„° ì†Œí™˜ ë");
             _monsterCount = 0;
 
             _gameManager.UpdateCurrentWaveNumber(i + 1);
             
-            // nÃÊ ÈÄ ´ÙÀ½ ¿şÀÌºê ½ÃÀÛ. 
+            // nì´ˆ í›„ ë‹¤ìŒ ì›¨ì´ë¸Œ ì‹œì‘. 
             yield return new WaitForSeconds(_waveDelay);
-            Debug.Log("´ÙÀ½ ¿şÀÌºê°¡ ½ÃÀÛµË´Ï´Ù.");
+            Debug.Log("ë‹¤ìŒ ì›¨ì´ë¸Œê°€ ì‹œì‘ë©ë‹ˆë‹¤.");
         }
     }
 
+    // ë¦¬í™í† ë§ í•„ìš”
     private void SpawnMonster(int waveNumber)
     {
         switch (waveNumber)
         {
             case 0:
 
-                GameObject spawnMonster = Instantiate(_monsterPrefabList[waveNumber], _spawnPoint.position, Quaternion.identity); // ½ºÆù ÁöÁ¡¿¡ ¸ó½ºÅÍ »ı¼º 
+                GameObject spawnMonster = Instantiate(_monsterPrefabList[waveNumber], _spawnPoint.position, Quaternion.identity); // ìŠ¤í° ì§€ì ì— ëª¬ìŠ¤í„° ìƒì„± 
                 Monster monster = spawnMonster.GetComponent<Monster>();
                 monsterList.Add(monster);
-                monster.Init(waveNumber, _targetPoints, _gameManager.player.transform); // ¸ó½ºÅÍ »óÅÂ ÃÊ±âÈ­ -> ½ºÅÈ, ÀÌµ¿, ÇÃ·¹ÀÌ¾î Á¤º¸  
+                monster.Init(waveNumber, _targetPoints, _gameManager.player.transform); // ëª¬ìŠ¤í„° ìƒíƒœ ì´ˆê¸°í™” -> ìŠ¤íƒ¯, ì´ë™, í”Œë ˆì´ì–´ ì •ë³´  
 
                 break;
             case 1:
