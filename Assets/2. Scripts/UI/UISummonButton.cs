@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static UIInteraction;
 
@@ -30,6 +28,8 @@ public class UISummonButton : MonoBehaviour
             // 소환 UI 닫기.
             _uiManager.InActiveUIMonsterSummon();
             // _uiState = UIState.Close; // 상태 전환 
+
+            // 리펙토링 : 소환 UI 상태패턴으로 구현해야 함. 
             UIInteraction._uiState = UIState.Close;
 
             Vector3 position = _player.GetCurrentHitPos();

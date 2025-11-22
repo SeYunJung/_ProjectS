@@ -32,13 +32,21 @@ public class UIInteraction : MonoBehaviour
         {
             case UIState.Close:
                 // 리펙토링 : 레이어를 번호로 구분하지 말고 2비트로 구분하는 건 어떤지?
-                if (_hit.collider != null && _hit.collider.gameObject.layer == 8)
+                // 에러 : 
+                if(_currentHitPos != _tilemap.GetCellCenterWorld(_tilemap.WorldToCell(_mouseWorldPos)))
                 {
                     _lastHitPos = _tilemap.GetCellCenterWorld(_tilemap.WorldToCell(_mouseWorldPos));
 
                     _uiManager.ActiveUIMonsterSummon(_lastHitPos);
                     _uiState = UIState.Open;
                 }
+                //if (_hit.collider != null && _hit.collider.gameObject.layer == 8)
+                //{
+                //    _lastHitPos = _tilemap.GetCellCenterWorld(_tilemap.WorldToCell(_mouseWorldPos));
+
+                //    _uiManager.ActiveUIMonsterSummon(_lastHitPos);
+                //    _uiState = UIState.Open;
+                //}
                 break;
 
             case UIState.Open:
