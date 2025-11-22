@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3617741727910747037}
   - component: {fileID: 5973491010960591377}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 1710168517633297756}
   - component: {fileID: 6901063321358192535}
   - component: {fileID: 5192651466815166604}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hero2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ff611f15981d14184bd815c0e359cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uiState: 0
   _tilemap: {fileID: 6944504112820642920, guid: 664cb02cc452dfc4a848d0bbd82ef1dd, type: 3}
 --- !u!1 &7317350366338427644
 GameObject:
@@ -284,7 +283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4682179829591470259}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ProjectileSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

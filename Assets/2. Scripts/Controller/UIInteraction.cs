@@ -28,11 +28,21 @@ public class UIInteraction : MonoBehaviour
         _mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _hit = Physics2D.Raycast(_mouseWorldPos, Vector2.zero);
 
+        // 영웅을 클릭했으면
+        if(_hit.collider != null && _hit.collider.gameObject.layer == 9)
+        {
+            // 승급할 수 있는가? (일단은 돈이 충분한지 체크)
+            if(GameManager.instance.player.ReturnGold() >= 20.0f)
+            {
+                // 영웅 승급 (영웅 레벨 2, 공격력 랜덤 프리팹으로 변경)
+                Debug.Log("영웅 승급");
+            }
+        }
+
         switch (_uiState)
         {
             case UIState.Close:
                 // 리펙토링 : 레이어를 번호로 구분하지 말고 2비트로 구분하는 건 어떤지?
-                // 에러 : 
                 if(_currentHitPos != _tilemap.GetCellCenterWorld(_tilemap.WorldToCell(_mouseWorldPos)))
                 {
                     _lastHitPos = _tilemap.GetCellCenterWorld(_tilemap.WorldToCell(_mouseWorldPos));

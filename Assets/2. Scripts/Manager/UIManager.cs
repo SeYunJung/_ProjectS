@@ -3,7 +3,7 @@ using UnityEngine;
 public enum UIState
 {
     Close,
-    Open
+    Open,
 }
 
 public class UIManager : MonoBehaviour
