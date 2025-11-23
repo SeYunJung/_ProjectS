@@ -14,6 +14,9 @@ public class HeroSpawnManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> _heroPrefabList; // 영웅 프리팹 리스트
     [SerializeField] private List<GameObject> _level2HeroList; // 레벨2 영웅 프리팹 리스트 
+    [SerializeField] private List<GameObject> _level3HeroList;
+    [SerializeField] private List<GameObject> _level4HeroList;
+    [SerializeField] private List<GameObject> _level5HeroList;
     public List<Monster> heroList { get; private set; }
 
     public void Init()
@@ -60,13 +63,43 @@ public class HeroSpawnManager : MonoBehaviour
         Destroy(hero);
     }
 
-    public void Promotion(Vector3 position)
+    public void Promotion(Hero hero, Vector3 position)
+    {
+        hero.SetLevel(1);
+
+        int randomNumber = Random.Range(0, (int)HeroType.Count);
+        HeroType heroType = (HeroType)randomNumber;
+
+        switch (hero.level)
+        {
+            case 2:
+                GameObject promotionHero2 = Instantiate(_level2HeroList[randomNumber], position, Quaternion.identity);
+                Hero hero2 = promotionHero2.GetComponent<Hero>();
+                hero2.SetLevel(2);
+                hero2.Init();
+                break;
+            case 3:
+                GameObject promotionHero3 = Instantiate(_level3HeroList[randomNumber], position, Quaternion.identity);
+                Hero hero3 = promotionHero3.GetComponent<Hero>();
+                hero3.SetLevel(3);
+                hero3.Init();
+                break;
+            case 4:
+                GameObject promotionHero4 = Instantiate(_level4HeroList[randomNumber], position, Quaternion.identity);
+                Hero hero4 = promotionHero4.GetComponent<Hero>();
+                hero4.SetLevel(4);
+                hero4.Init();
+                break;
+        }
+    }
+
+    public void HeroAwake(Hero hero, Vector3 position)
     {
         int randomNumber = Random.Range(0, (int)HeroType.Count);
         HeroType heroType = (HeroType)randomNumber;
 
-        GameObject promotionHero = Instantiate(_level2HeroList[randomNumber], position, Quaternion.identity);
-        Hero hero = promotionHero.GetComponent<Hero>();
-        hero.Init();
+        GameObject promotionHero = Instantiate(_level5HeroList[randomNumber], position, Quaternion.identity);
+        Hero hero1 = promotionHero.GetComponent<Hero>();
+        hero1.Init();
     }
 }

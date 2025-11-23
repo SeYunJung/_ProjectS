@@ -75,6 +75,9 @@ public class ProjectileController : MonoBehaviour
                     Destroy(_target.gameObject);
                     _monsterList.Remove(_target);
 
+                    // 돈 획득
+                    _gameManager.player.UpdateGold(10.0f);
+
                     // 마지막 웨이브이면서 monsterList 크기가 0이면 
                     if (_gameManager.isEndGame() && _monsterList.Count == 0)
                     {

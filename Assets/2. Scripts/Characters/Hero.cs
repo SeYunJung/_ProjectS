@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Hero : CombatController
 {
+    public float level {  get; private set; }
+
     public override void Init()
     {
         base.Init();
@@ -13,5 +15,11 @@ public class Hero : CombatController
     {
         base.Init();
         attackSpeed += speed;
+        level = 1.0f;
+    }
+
+    public void SetLevel(float level)
+    {
+        this.level += level;
     }
 }

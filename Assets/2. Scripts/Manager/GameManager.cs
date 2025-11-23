@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public ObjectPool objectPool { get; private set; }
     public UIManager uiManager { get; private set; }
     public HeroSpawnManager heroSpawnManager { get; private set; }
+    public WorkerSpawnManager workerSpawnManager { get; private set; }
 
     private int _currentWaveNumber;
 
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
         objectPool = GetComponentInChildren<ObjectPool>();
         uiManager = GetComponentInChildren<UIManager>();
         heroSpawnManager = GetComponentInChildren<HeroSpawnManager>();
+        workerSpawnManager = GetComponentInChildren<WorkerSpawnManager>();
 
         GameStart();
     }
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
     {
         // 매니저 초기화 
         monsterSpawnManager.Init(this);
+        workerSpawnManager.Init();
         uiManager.Init();
         objectPool.Init();
         heroSpawnManager.Init();

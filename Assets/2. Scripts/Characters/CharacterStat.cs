@@ -11,12 +11,14 @@ public class CharacterStat : MonoBehaviour
     // 플레이어 스탯
     public float attackSpeed { get; private set; }
     public float money {  get; private set; }
+    public float mineral {  get; private set; }
+    public float workerCount { get; private set; }
 
     // 몬스터 스탯
     public float speed { get; private set; }
 
 
-    // 몬스터 스탯 초기화 `
+    // 몬스터 스탯 초기화
     public void Init(int waveNumber, float speed, Transform target)
     {
         switch (waveNumber)
@@ -39,7 +41,9 @@ public class CharacterStat : MonoBehaviour
     {
         this.health = 10.0f;
         this.attackSpeed = 1.0f;
-        this.money = 50.0f;
+        this.money = 100000.0f;
+        this.mineral = 0.0f;
+        this.workerCount = 1.0f;
     }
 
     public void SetHealth(float value)
@@ -50,5 +54,15 @@ public class CharacterStat : MonoBehaviour
     public void SetMoney(float money)
     {
         this.money += money;
+
+        // UI 업데이트
+        GameManager.instance.uiManager.uiResourcePanel.UpdateMoney(this.money);
+    }
+
+    public void SetMineral(float mineral)
+    {
+        this.mineral += mineral;
+
+        GameManager.instance.uiManager.uiResourcePanel.UpdateMineral(this.mineral);
     }
 }

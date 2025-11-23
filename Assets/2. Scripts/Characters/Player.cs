@@ -7,6 +7,16 @@ public class Player : CombatController
         return stat.money;
     }
 
+    public float ReturnMineral()
+    {
+        return stat.mineral;
+    }
+
+    public void UpdateGold(float money)
+    {
+        stat.SetMoney(money);
+    }
+
     public Vector3 GetCurrentHitPos()
     {
         return interaction.GetCurrentHitPos();

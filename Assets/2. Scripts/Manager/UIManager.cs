@@ -25,13 +25,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RectTransform _uiMonsterSummonRect;
     [SerializeField] private UISummonButton _uiSummonButton;
     [SerializeField] private GameObject _uiNotEnoughMoney;
+    [SerializeField] private GameObject _uiNotEnoughMineral;
     [SerializeField] private RectTransform _uiPromotionRect;
+    [SerializeField] private GameObject _uiWorkerSpawnPanel;
+    [SerializeField] private RectTransform _uiAwakeRect;
+    private bool _isopen;
+    public UIResourcePanel uiResourcePanel { get; private set;}
 
     private Vector3 _blockOffset;
 
     public void Init()
     {
+        uiResourcePanel = GetComponentInChildren<UIResourcePanel>();
         _uiSummonButton.Init();
+        uiResourcePanel.Init();
 
         _blockOffset = new Vector3(Pos.BLOCK_OFFSET_X, Pos.BLOCK_OFFSET_Y);
     }
@@ -78,6 +85,20 @@ public class UIManager : MonoBehaviour
         SetActive(_uiNotEnoughMoney, false);
     }
 
+    public IEnumerator ActiveUINotEnoughMineral()
+    {
+        SetActive(_uiNotEnoughMineral, true);
+
+        yield return new WaitForSeconds(1.5f);
+
+        InActiveUINotEnoughMineral();
+    }
+
+    public void InActiveUINotEnoughMineral()
+    {
+        SetActive(_uiNotEnoughMineral, false);
+    }
+
     public void ActiveUIPromotion(Vector3 worldPos)
     {
         //_uiMonsterSummonRect.position = worldPos + _blockOffset;
@@ -90,5 +111,40 @@ public class UIManager : MonoBehaviour
     public void InActiveUIPromotion()
     {
         SetActive(_uiPromotionRect.gameObject, false);
+    }
+
+    public void SetActiveUIWorkerSpawnPanel()
+    {
+        if (!_isopen)
+        {
+            ActiveUIWorkerSpawnPanel();
+            _isopen = true;
+        }
+        else
+        {
+            InActiveUIWorkerSpawnPanel();
+            _isopen = false;
+        }
+    }
+
+    public void ActiveUIWorkerSpawnPanel()
+    {
+        SetActive(_uiWorkerSpawnPanel, true);
+    }
+
+    public void InActiveUIWorkerSpawnPanel()
+    {
+        SetActive(_uiWorkerSpawnPanel, false);
+    }
+
+    public void ActiveUIAwake(Vector3 worldPos)
+    {
+        _uiAwakeRect.position = worldPos + _blockOffset;
+        SetActive(_uiAwakeRect.gameObject, true);
+    }
+
+    public void InActiveUIAwake()
+    {
+        SetActive(_uiAwakeRect.gameObject, false);
     }
 }

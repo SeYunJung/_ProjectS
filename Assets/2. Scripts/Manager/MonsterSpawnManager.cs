@@ -83,24 +83,9 @@ public class MonsterSpawnManager : MonoBehaviour
     // - 중복 코드 하나로 통합 
     private void SpawnMonster(int waveNumber)
     {
-        switch (waveNumber)
-        {
-            case 0:
-
-                GameObject spawnMonster = Instantiate(_monsterPrefabList[waveNumber], _spawnPoint.position, Quaternion.identity); // 스폰 지점에 몬스터 생성 
-                Monster monster = spawnMonster.GetComponent<Monster>();
-                monsterList.Add(monster);
-                monster.Init(waveNumber, _targetPoints, _gameManager.player.transform); // 몬스터 상태 초기화 -> 스탯, 이동, 플레이어 정보  
-
-                break;
-            case 1:
-
-                GameObject spawnMonster1 = Instantiate(_monsterPrefabList[waveNumber], _spawnPoint.position, Quaternion.identity);
-                Monster monster1 = spawnMonster1.GetComponent<Monster>();
-                monsterList.Add(monster1);
-                monster1.Init(waveNumber, _targetPoints, _gameManager.player.transform);
-
-                break;
-        }
+        GameObject spawnMonster = Instantiate(_monsterPrefabList[waveNumber], _spawnPoint.position, Quaternion.identity); // 스폰 지점에 몬스터 생성 
+        Monster monster = spawnMonster.GetComponent<Monster>();
+        monsterList.Add(monster);
+        monster.Init(waveNumber, _targetPoints, _gameManager.player.transform); // 몬스터 상태 초기화 -> 스탯, 이동, 플레이어 정보  
     }
 }
