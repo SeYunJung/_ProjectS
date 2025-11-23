@@ -23,8 +23,6 @@ public class UISummonButton : MonoBehaviour
         // 돈이 충분하면
         if (_player.ReturnGold() >= 20.0f)
         {
-            Debug.Log("돈 충분!");
-
             // 소환 UI 닫기.
             _uiManager.InActiveUIMonsterSummon();
             // _uiState = UIState.Close; // 상태 전환 
@@ -33,9 +31,31 @@ public class UISummonButton : MonoBehaviour
             UIInteraction._uiState = UIState.Close;
 
             Vector3 position = _player.GetCurrentHitPos();
-            _heroSpawnManager.SpawnHero(position);
+
+            // 녹색 타일이면 
+            if (_player.interaction.currentTileLayer == 11)
+            {
+                // 속도 += 0.3f 
+                _heroSpawnManager.SpawnHero(position, 10f);
+            }
+            else
+            {
+                _heroSpawnManager.SpawnHero(position);
+            }
+
             // 랜덤 영웅 생성 (스폰 담당)
             // 생성된 영웅은 초기화를 거쳐 자동공격한다. (스폰 담당)
+        }
+        else
+        {
+            Debug.Log("돈 부족..");
+
+            // 소환 UI 닫기
+            //_uiManager.InActiveUIMonsterSummon();
+            //UIInteraction._uiState = UIState.Close;
+
+            // 돈 부족 UI 열기
+            StartCoroutine(_uiManager.ActiveUINotEnoughMoney());
         }
     }
 }

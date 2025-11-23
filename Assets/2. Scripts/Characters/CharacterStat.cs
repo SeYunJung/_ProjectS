@@ -10,13 +10,13 @@ public class CharacterStat : MonoBehaviour
 
     // 플레이어 스탯
     public float attackSpeed { get; private set; }
-    public float gold {  get; private set; }
+    public float money {  get; private set; }
 
     // 몬스터 스탯
     public float speed { get; private set; }
 
 
-    // 몬스터 스탯 초기화 
+    // 몬스터 스탯 초기화 `
     public void Init(int waveNumber, float speed, Transform target)
     {
         switch (waveNumber)
@@ -39,11 +39,16 @@ public class CharacterStat : MonoBehaviour
     {
         this.health = 10.0f;
         this.attackSpeed = 1.0f;
-        this.gold = 100.0f;
+        this.money = 50.0f;
     }
 
     public void SetHealth(float value)
     {
-        health += value;
+        this.health += value;
+    }
+
+    public void SetMoney(float money)
+    {
+        this.money += money;
     }
 }

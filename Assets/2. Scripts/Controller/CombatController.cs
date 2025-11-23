@@ -26,7 +26,7 @@ public class CombatController : Character
     private MonsterSpawnManager _monsterSpawnManager;
     private ObjectPool _objectPool;
     private List<Monster> _monsterList;
-    protected UIInteraction _interaction;
+    public UIInteraction interaction {  get; private set; }
 
     // 플레이어 초기화
     public override void Init()
@@ -37,8 +37,8 @@ public class CombatController : Character
         _monsterSpawnManager = gameManager.monsterSpawnManager;
         _objectPool = gameManager.objectPool;
         _monsterList = _monsterSpawnManager.monsterList;
-        _interaction = GetComponent<UIInteraction>();
-        _interaction.Init();
+        interaction = GetComponent<UIInteraction>();
+        interaction.Init();
 
         // 스탯 초기화 
         stat.Init();
@@ -120,7 +120,7 @@ public class CombatController : Character
         bool isProjectile = obj.TryGetComponent(out ProjectileController projectileController);
         if (isProjectile)
         {
-            projectileController.Init(_targetMonster); // 목표 위치, 목표를 바라보는 방향 초기화 
+            projectileController.Init(_targetMonster, attackSpeed); // 목표 위치, 목표를 바라보는 방향 초기화 
         }
     }
 }

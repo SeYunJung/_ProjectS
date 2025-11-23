@@ -65,7 +65,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8db31da499ab3488d17f6987ebf5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stat: {fileID: 0}
   moveSpeed: 0
+  attackSpeed: 0
   target: {fileID: 0}
   _attackRange: 3
   _targetMonster: {fileID: 0}
@@ -160,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: fd1f01486aab5a945a4512311991096a, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -171,7 +173,23 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6188911787387518563}
+        m_TargetAssemblyTypeName: UIInteraction, Assembly-CSharp
+        m_MethodName: OnUIInteraction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6e8e4ea0-ffc3-426e-9ee5-4cdda9194c50
+    m_ActionName: Player/UIInteraction[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -190,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tilemap: {fileID: 0}
+  _graphicRaycaster: {fileID: 0}
 --- !u!1 &7118865950049867776
 GameObject:
   m_ObjectHideFlags: 0

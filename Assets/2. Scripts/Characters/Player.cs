@@ -4,12 +4,12 @@ public class Player : CombatController
 {
     public float ReturnGold()
     {
-        return stat.gold;
+        return stat.money;
     }
 
     public Vector3 GetCurrentHitPos()
     {
-        return _interaction.GetCurrentHitPos();
+        return interaction.GetCurrentHitPos();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

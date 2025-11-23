@@ -40,11 +40,11 @@ public class ProjectileController : MonoBehaviour
 
     // 투사체 초기화 함수
     // 목표 위치, 목표를 바라보는 방향 초기화 
-    public void Init(Monster monster) 
+    public void Init(Monster monster, float attackSpeed) 
     {
         _target = monster;
         _targetTransform = monster.transform;
-        _projectileSpeed = 4.0f;
+        _projectileSpeed = 4.0f + attackSpeed;
 
         _gameManager = GameManager.instance;
         _monsterList = GameManager.instance.monsterSpawnManager.monsterList;

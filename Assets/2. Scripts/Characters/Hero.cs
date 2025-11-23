@@ -8,4 +8,10 @@ public class Hero : CombatController
     {
         base.Init();
     }
+
+    public void Init(float speed)
+    {
+        base.Init();
+        attackSpeed += speed;
+    }
 }

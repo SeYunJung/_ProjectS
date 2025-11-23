@@ -53,7 +53,7 @@ public class MonsterSpawnManager : MonoBehaviour
     {
         for(int i = 0; i < _waveMonsterCount.Length; i++)
         {
-            Debug.Log($"{i+1}번 웨이브 시작");
+            //Debug.Log($"{i+1}번 웨이브 시작");
 
             // i번째 웨이브 시작
             while(_monsterCount != _waveMonsterCount[i])
@@ -67,14 +67,14 @@ public class MonsterSpawnManager : MonoBehaviour
                 _monsterCount++;
             }
 
-            Debug.Log($"{i+1}번 웨이브 몬스터 소환 끝");
+            //Debug.Log($"{i+1}번 웨이브 몬스터 소환 끝");
             _monsterCount = 0;
 
             _gameManager.UpdateCurrentWaveNumber(i + 1);
             
             // n초 후 다음 웨이브 시작. 
             yield return new WaitForSeconds(_waveDelay);
-            Debug.Log("다음 웨이브가 시작됩니다.");
+            //Debug.Log("다음 웨이브가 시작됩니다.");
         }
     }
 

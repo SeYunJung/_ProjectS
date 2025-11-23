@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public enum UIState
@@ -23,6 +24,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UIResult _uiResult;
     [SerializeField] private RectTransform _uiMonsterSummonRect;
     [SerializeField] private UISummonButton _uiSummonButton;
+    [SerializeField] private GameObject _uiNotEnoughMoney;
+    [SerializeField] private RectTransform _uiPromotionRect;
 
     private Vector3 _blockOffset;
 
@@ -59,5 +62,33 @@ public class UIManager : MonoBehaviour
     public bool IsActiveUIMonsterSummon()
     {
         return _uiMonsterSummonRect.gameObject.activeSelf;
+    }
+
+    public IEnumerator ActiveUINotEnoughMoney()
+    {
+        SetActive(_uiNotEnoughMoney, true);
+
+        yield return new WaitForSeconds(1.5f);
+
+        InActiveUINotEnoughMoney();
+    }
+
+    public void InActiveUINotEnoughMoney()
+    {
+        SetActive(_uiNotEnoughMoney, false);
+    }
+
+    public void ActiveUIPromotion(Vector3 worldPos)
+    {
+        //_uiMonsterSummonRect.position = worldPos + _blockOffset;
+        //SetActive(_uiMonsterSummonRect.gameObject, true);
+
+        _uiPromotionRect.position = worldPos + _blockOffset;
+        SetActive(_uiPromotionRect.gameObject, true);
+    }
+
+    public void InActiveUIPromotion()
+    {
+        SetActive(_uiPromotionRect.gameObject, false);
     }
 }
