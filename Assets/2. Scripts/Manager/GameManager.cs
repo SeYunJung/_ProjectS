@@ -9,12 +9,11 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager { get; private set; }
     public HeroSpawnManager heroSpawnManager { get; private set; }
     public WorkerSpawnManager workerSpawnManager { get; private set; }
+    public DataManager dataManager { get; private set; }
 
     private int _currentWaveNumber;
 
-    // 리펙토링 : 씬 전환되면 missing 남. 
-    // -> 게임시작할 때 프리팹으로 생성되게 하자. 
-    [field:SerializeField] public Player player {  get; set; }
+    public Player player {  get; private set; }
 
     private void Awake()
     {
@@ -28,6 +27,7 @@ public class GameManager : MonoBehaviour
         uiManager = GetComponentInChildren<UIManager>();
         heroSpawnManager = GetComponentInChildren<HeroSpawnManager>();
         workerSpawnManager = GetComponentInChildren<WorkerSpawnManager>();
+        dataManager = DataManager.instance;
 
         GameStart();
     }
@@ -40,6 +40,10 @@ public class GameManager : MonoBehaviour
         workerSpawnManager.Init();
         objectPool.Init();
         heroSpawnManager.Init();
+        dataManager.Init();
+
+        // 플레이어 가져오기 
+        player = dataManager.player;
 
         // 플레이어 초기화
         player.Init();

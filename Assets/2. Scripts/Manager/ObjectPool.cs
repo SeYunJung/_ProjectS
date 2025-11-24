@@ -15,8 +15,6 @@ public class ObjectPool : MonoBehaviour
     public List<Pool> pools;
     private Dictionary<string, Queue<GameObject>> _poolDictionary;
 
-    [SerializeField] private Transform _projectileSpawnPoint;
-
     public static ObjectPool instance;
 
     private void Awake()
@@ -34,7 +32,7 @@ public class ObjectPool : MonoBehaviour
 
             for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab, _projectileSpawnPoint);
+                GameObject obj = Instantiate(pool.prefab, transform);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
