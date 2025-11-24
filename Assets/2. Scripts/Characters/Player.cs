@@ -22,6 +22,16 @@ public class Player : CombatController
         return interaction.GetCurrentHitPos();
     }
 
+    public GameObject GetTargetInfo()
+    {
+        return interaction.GetTargetInfo();
+    }
+
+    public GameObject GetVictimHeroInfo()
+    {
+        return interaction.GetVictimHeroInfo();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 리펙토링 : 레이어 번호 -> 이진수로 

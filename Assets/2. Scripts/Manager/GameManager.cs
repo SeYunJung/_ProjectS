@@ -35,9 +35,9 @@ public class GameManager : MonoBehaviour
     private void GameStart()
     {
         // 매니저 초기화 
+        uiManager.Init();
         monsterSpawnManager.Init(this);
         workerSpawnManager.Init();
-        uiManager.Init();
         objectPool.Init();
         heroSpawnManager.Init();
 

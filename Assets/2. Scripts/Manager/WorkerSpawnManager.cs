@@ -24,18 +24,23 @@ public class WorkerSpawnManager : MonoBehaviour
 
     public void SpawnWorker()
     {
+        if (workerList.Count >= 20) return;
+
         GameObject spawnWorker = Instantiate(_workerPrefab, _spawnPoint);
         Worker worker = spawnWorker.GetComponent<Worker>();
 
-        if(workerList.Count < 20)
-        {
-            workerList.Add(worker);
-            worker.Init(!_flag, _targetPoints);
-            _flag = !_flag;
-        }
-        else
-        {
-            Debug.Log("일꾼은 20명까지 소환 가능");
-        }
+        workerList.Add(worker);
+        _gameManager.uiManager.uiResourcePanel.UpdateWorkerCount(workerList.Count);
+        worker.Init(!_flag, _targetPoints);
+        _flag = !_flag;
+
+        //if(workerList.Count < 20)
+        //{
+        //}
+        //else
+        //{
+        //    Debug.Log("일꾼은 20명까지 소환 가능");
+        //    return;
+        //}
     }
 }

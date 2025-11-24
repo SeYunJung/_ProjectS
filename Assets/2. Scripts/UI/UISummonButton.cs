@@ -23,6 +23,11 @@ public class UISummonButton : MonoBehaviour
         // 돈이 충분하면
         if (_player.ReturnGold() >= 20.0f)
         {
+            // 재화 소모 
+            Debug.Log($"수정 전 돈 : {_player.ReturnGold()}");
+            _player.GetComponent<CombatController>().stat.SetMoney(-20);
+            Debug.Log($"수정 후 돈 : {_player.ReturnGold()}");
+
             // 소환 UI 닫기.
             _uiManager.InActiveUIMonsterSummon();
             // _uiState = UIState.Close; // 상태 전환 

@@ -27,9 +27,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _uiNotEnoughMoney;
     [SerializeField] private GameObject _uiNotEnoughMineral;
     [SerializeField] private RectTransform _uiPromotionRect;
-    [SerializeField] private GameObject _uiWorkerSpawnPanel;
+    [SerializeField] private GameObject _uiWorkerSummonPanel;
     [SerializeField] private RectTransform _uiAwakeRect;
-    private bool _isopen;
+    [SerializeField] private UIAwakeButton _uiAwakeButton;
+    [SerializeField] private RectTransform _uiRefairRect;
+    [SerializeField] private UIRepairButton _uiRepairButton;
+    private bool _isOpen;
     public UIResourcePanel uiResourcePanel { get; private set;}
 
     private Vector3 _blockOffset;
@@ -39,6 +42,8 @@ public class UIManager : MonoBehaviour
         uiResourcePanel = GetComponentInChildren<UIResourcePanel>();
         _uiSummonButton.Init();
         uiResourcePanel.Init();
+        _uiAwakeButton.Init();
+        _uiRepairButton.Init();
 
         _blockOffset = new Vector3(Pos.BLOCK_OFFSET_X, Pos.BLOCK_OFFSET_Y);
     }
@@ -113,38 +118,49 @@ public class UIManager : MonoBehaviour
         SetActive(_uiPromotionRect.gameObject, false);
     }
 
-    public void SetActiveUIWorkerSpawnPanel()
+    public void SetActiveUIWorkerSummonPanel()
     {
-        if (!_isopen)
+        if (!_isOpen)
         {
-            ActiveUIWorkerSpawnPanel();
-            _isopen = true;
+            ActiveUIWorkerSummonPanel();
+            _isOpen = true;
         }
         else
         {
-            InActiveUIWorkerSpawnPanel();
-            _isopen = false;
+            InActiveUIWorkerSummonPanel();
+            _isOpen = false;
         }
     }
 
-    public void ActiveUIWorkerSpawnPanel()
+    public void ActiveUIWorkerSummonPanel()
     {
-        SetActive(_uiWorkerSpawnPanel, true);
+        SetActive(_uiWorkerSummonPanel, true);
     }
 
-    public void InActiveUIWorkerSpawnPanel()
+    public void InActiveUIWorkerSummonPanel()
     {
-        SetActive(_uiWorkerSpawnPanel, false);
+        SetActive(_uiWorkerSummonPanel, false);
     }
 
     public void ActiveUIAwake(Vector3 worldPos)
     {
-        _uiAwakeRect.position = worldPos + _blockOffset;
+        _uiAwakeRect.position = worldPos;
         SetActive(_uiAwakeRect.gameObject, true);
     }
 
     public void InActiveUIAwake()
     {
         SetActive(_uiAwakeRect.gameObject, false);
+    }
+
+    public void ActiveUIRepair(Vector3 worldPos)
+    {
+        _uiRefairRect.position = worldPos + _blockOffset;
+        SetActive(_uiRefairRect.gameObject, true);
+    }
+
+    public void InActiveUIRepair()
+    {
+        SetActive(_uiRefairRect.gameObject, false);
     }
 }

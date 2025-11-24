@@ -29,4 +29,9 @@ public class UIResourcePanel : MonoBehaviour
     {
         _uiMineralText.text = mineral.ToString();
     }
+
+    public void UpdateWorkerCount(int workerCount)
+    {
+        _uiWorkerText.text = workerCount.ToString();
+    }
 }
