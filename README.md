@@ -16,9 +16,8 @@ Unity 엔진 기반으로 개발되었으며, Singleton, Object Pool을 활용�
 
 ## 🖼️ 게임 화면
 <p>게임 플레이 화면입니다.</p>
-<img src="https://github.com/user-attachments/assets/1c39a72f-0465-4ef5-829e-8331fcef8480" width="600"/>
-<img src="https://github.com/user-attachments/assets/c941814f-6dd0-40ee-8367-13b3e0b323a8" width="600"/>
-<img src="https://github.com/user-attachments/assets/e4d91444-cae5-4e56-ac05-aad5b1f4c63e" width="600"/>
+<img src="https://github.com/user-attachments/assets/27637173-bea3-48df-80ca-f992d0584425" width="600"/>
+<img src="https://github.com/user-attachments/assets/55785f02-4f7d-47e7-85ea-a60f4c570250" width="600"/>
 
 
 ## 🕹️ 플레이 방법
