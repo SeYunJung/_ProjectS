@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tilemap: {fileID: 6944504112820642920, guid: 664cb02cc452dfc4a848d0bbd82ef1dd, type: 3}
-  _obstacleTilemap: {fileID: 0}
+  _obstacleTilemap: {fileID: 2029743796813920779, guid: af7fa0ba873fdfe4ea424fc6f474d7e3, type: 3}
   _normalTile: {fileID: 11400000, guid: 0ed71edc460a04d4088354d96ce02ea2, type: 2}
   _graphicRaycaster: {fileID: 0}
 --- !u!1 &7118865950049867776
