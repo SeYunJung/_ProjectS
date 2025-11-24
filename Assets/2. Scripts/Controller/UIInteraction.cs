@@ -128,7 +128,7 @@ public class Interaction : MonoBehaviour
                         .FirstOrDefault();
 
                     // 승급 UI 열기.
-                    _uiManager.ActiveUIPromotion(_currentHitPos);
+                    _uiManager.ActiveUIPromotion(currentHero.transform.position);
 
                     return;
                 }
