@@ -17,11 +17,12 @@ public class Interaction : MonoBehaviour
     public static UIState _uiState;
 
     private GameObject _currentHero;
-    public int currentTileLayer {  get; private set; }
+    public int currentTileLayer { get; private set; }
 
     private GameObject _victimHero;
 
     // 리펙토링 필요. 씬이 전환되면 missing 에러 날 것 같음.
+    [SerializeField] private Grid _grid;
     [SerializeField] private Tilemap _tilemap;
     [SerializeField] private Tilemap _obstacleTilemap;
     [SerializeField] private Tile _normalTile;
@@ -38,6 +39,12 @@ public class Interaction : MonoBehaviour
         _uiManager = _gameManager.uiManager;
         _player = _gameManager.player;
         _uiState = UIState.Close;
+
+        _grid = _gameManager.grid;
+        Tilemap[] tilemaps = _grid.GetComponentsInChildren<Tilemap>();
+        _tilemap = tilemaps[0];
+        _obstacleTilemap = tilemaps[2];
+        _graphicRaycaster = _uiManager.uiPromotion.GetComponent<GraphicRaycaster>();
     }
 
     public void OnUIInteraction(InputAction.CallbackContext context)
@@ -56,11 +63,11 @@ public class Interaction : MonoBehaviour
 
                 _graphicRaycaster.Raycast(pointerEventData, results);
 
-                 
-                foreach(RaycastResult result in results)
+
+                foreach (RaycastResult result in results)
                 {
                     // 승급 UI 클릭했으면 
-                    if(result.gameObject.layer == 10)
+                    if (result.gameObject.layer == 10)
                     {
                         // 돈이 충분하면
                         if (_player.ReturnGold() >= 20.0f)
@@ -98,7 +105,7 @@ public class Interaction : MonoBehaviour
                 _currentHero = _hit.collider.gameObject;
 
                 // 영웅 레벨이 4이면 
-                if(_currentHero.GetComponent<Hero>().level == 4)
+                if (_currentHero.GetComponent<Hero>().level == 4)
                 {
                     Debug.Log("초월하자.");
 
@@ -119,7 +126,7 @@ public class Interaction : MonoBehaviour
 
 
                 // 클릭한 영웅과 같은 영웅이 블록에 배치되어 있다면 (돈 충분한지 여부 확인 필요 x)
-                if(_gameManager.heroSpawnManager.heroList.Count(x => x.level == _currentHero.GetComponent<Hero>().level && x.name == _currentHero.name) >= 2)
+                if (_gameManager.heroSpawnManager.heroList.Count(x => x.level == _currentHero.GetComponent<Hero>().level && x.name == _currentHero.name) >= 2)
                 {
                     Hero currentHero = _currentHero.GetComponent<Hero>();
                     _victimHero = _gameManager.heroSpawnManager.heroList
@@ -179,7 +186,7 @@ public class Interaction : MonoBehaviour
                 return;
             }
         }
-        
+
     }
 
     public Vector3 GetCurrentHitPos()

@@ -18,11 +18,16 @@ public static class Pos
 public static class ResourcePath
 {
     public const string CHARACTER = "Character/";
+    public const string GRID = "Grid/";
+    public const string UI = "UI/";
 }
 
 public static class Prefab
 {
     public const string PLAYER = "Player";
+    public const string GRID = "Grid";
+    public const string UI = "UI";
+    public const string PROMOTION = "UIPromotion";
 }
 
 public static class Position

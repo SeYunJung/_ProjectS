@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UIRepairButton _uiRepairButton;
     private bool _isOpen;
     public UIResourcePanel uiResourcePanel { get; private set;}
+    public GameObject uiPromotion {  get; private set;}
 
     private Vector3 _blockOffset;
 
@@ -32,6 +33,8 @@ public class UIManager : MonoBehaviour
         uiResourcePanel.Init();
         _uiAwakeButton.Init();
         _uiRepairButton.Init();
+        uiPromotion = DataManager.instance.uiPromotion;
+        _uiPromotionRect = uiPromotion.GetComponent<RectTransform>();
 
         _blockOffset = new Vector3(Pos.BLOCK_OFFSET_X, Pos.BLOCK_OFFSET_Y);
     }

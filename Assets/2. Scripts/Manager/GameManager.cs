@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour_Singleton<GameManager>
     private int _currentWaveNumber;
 
     public Player player {  get; private set; }
-
+    public Grid grid { get; private set; }
 
     private void Start()
     {
@@ -28,16 +28,18 @@ public class GameManager : MonoBehaviour_Singleton<GameManager>
 
     private void GameStart()
     {
+        dataManager.Init();
+
+        // 플레이어 가져오기 
+        player = dataManager.player;
+        grid = dataManager.grid;
+
         // 매니저 초기화 
         uiManager.Init();
         monsterSpawnManager.Init(this);
         workerSpawnManager.Init();
         objectPool.Init();
         heroSpawnManager.Init();
-        dataManager.Init();
-
-        // 플레이어 가져오기 
-        player = dataManager.player;
 
         // 플레이어 초기화
         player.Init();

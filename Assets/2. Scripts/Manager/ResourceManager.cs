@@ -9,6 +9,16 @@ public class ResourceManager : MonoBehaviour_Singleton<ResourceManager>
         return CreatePathAndObject<T>(ResourcePath.CHARACTER, prefabName, position, parent);
     }
 
+    public T CreateTilemap<T>(string prefabName, Vector2 position, Transform parent = null) where T : Object
+    {
+        return CreatePathAndObject<T>(ResourcePath.GRID, prefabName, position, parent);
+    }
+
+    public T CreateUI<T>(string prefabName, Vector2 Position, Transform parent = null) where T : Object
+    {
+        return CreatePathAndObject<T>(ResourcePath.UI, prefabName, Position, parent);
+    }
+
     // 경로를 만들고, 프리팹 생성/반환 
     public T CreatePathAndObject<T>(string resourcePath, string prefabName, Vector2 position, Transform parent = null) where T : Object
     {
