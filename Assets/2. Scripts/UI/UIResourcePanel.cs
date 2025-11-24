@@ -15,7 +15,7 @@ public class UIResourcePanel : MonoBehaviour
 
     public void Init()
     {
-        _uiMoneyText.text = "50";
+        _uiMoneyText.text = "100000";
         _uiMineralText.text = "0";
         _uiWorkerText.text = "1";
     }
