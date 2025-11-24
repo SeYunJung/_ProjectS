@@ -1703,7 +1703,7 @@ GameObject:
   - component: {fileID: 579973118}
   - component: {fileID: 579973117}
   - component: {fileID: 579973116}
-  - component: {fileID: 579973115}
+  - component: {fileID: 579973120}
   m_Layer: 12
   m_Name: UIRepairButton
   m_TagString: Untagged
@@ -1732,18 +1732,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &579973115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579973113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3b033a40d8850444a148b39bf93b18e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &579973116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1788,9 +1776,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIAwakeButton, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 579973120}
+        m_TargetAssemblyTypeName: UIRepairButton, Assembly-CSharp
+        m_MethodName: OnClickedButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1863,6 +1851,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 2
   m_TargetDisplay: 0
+--- !u!114 &579973120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579973113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa0d3c194be28d43b0c43062e08993f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &583675794
 GameObject:
   m_ObjectHideFlags: 0
@@ -5291,6 +5291,7 @@ MonoBehaviour:
   _uiAwakeRect: {fileID: 2724962335312645284}
   _uiAwakeButton: {fileID: 5938722419458049202}
   _uiRefairRect: {fileID: 579973114}
+  _uiRepairButton: {fileID: 579973120}
 --- !u!1 &1878063608
 GameObject:
   m_ObjectHideFlags: 0
@@ -5659,6 +5660,10 @@ PrefabInstance:
       propertyPath: _tilemap
       value: 
       objectReference: {fileID: 5190512818730976871}
+    - target: {fileID: 6188911787387518563, guid: 38dd58cd3a438ed44a8cc3d118834d7f, type: 3}
+      propertyPath: _obstacleTilemap
+      value: 
+      objectReference: {fileID: 266092471250317910}
     - target: {fileID: 6188911787387518563, guid: 38dd58cd3a438ed44a8cc3d118834d7f, type: 3}
       propertyPath: _graphicRaycaster
       value: 
@@ -6328,10 +6333,6 @@ PrefabInstance:
     - target: {fileID: 1255762566580414830, guid: 00fcc8823105b754682dbf49bee3c026, type: 3}
       propertyPath: m_Name
       value: UIPromotion
-      objectReference: {fileID: 0}
-    - target: {fileID: 1255762566580414830, guid: 00fcc8823105b754682dbf49bee3c026, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3718432416761751458, guid: 00fcc8823105b754682dbf49bee3c026, type: 3}
       propertyPath: m_Pivot.x

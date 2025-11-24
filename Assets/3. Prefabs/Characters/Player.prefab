@@ -208,6 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tilemap: {fileID: 0}
+  _obstacleTilemap: {fileID: 0}
+  _normalTile: {fileID: 11400000, guid: 0ed71edc460a04d4088354d96ce02ea2, type: 2}
   _graphicRaycaster: {fileID: 0}
 --- !u!1 &7118865950049867776
 GameObject:
