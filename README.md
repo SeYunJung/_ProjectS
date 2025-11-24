@@ -1,7 +1,7 @@
 # Tower Defense Project
 
 ## 🎮 게임 소개
-**『Tower Defense』**는 C#, Unity로 구현했던 스파르타 던전 일부를 유니티로 만든 게임입니다.
+**『Tower Defense』**는 C#, Unity로 구현한 디펜스 게임입니다.
 
 Unity 엔진 기반으로 개발되었으며, Singleton, Object Pool을 활용하여 구현하였습니다.
 
