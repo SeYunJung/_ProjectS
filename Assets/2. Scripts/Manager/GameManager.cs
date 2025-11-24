@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour_Singleton<GameManager>
 {
-    public static GameManager instance;
-
     public MonsterSpawnManager monsterSpawnManager {  get; private set; }
     public ObjectPool objectPool { get; private set; }
     public UIManager uiManager { get; private set; }
@@ -15,10 +13,6 @@ public class GameManager : MonoBehaviour
 
     public Player player {  get; private set; }
 
-    private void Awake()
-    {
-        instance = this;
-    }
 
     private void Start()
     {

@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceManager : MonoBehaviour
+public class ResourceManager : MonoBehaviour_Singleton<ResourceManager>
 {
-    #region Singleton
-    public static ResourceManager instance;
-
-    private void Awake()
-    {
-        instance = this;
-    }
-    #endregion
-
     public T CreateCharacter<T>(string prefabName, Vector2 position, Transform parent = null) where T : Object // T 타입이 Object야 함 
     {
         return CreatePathAndObject<T>(ResourcePath.CHARACTER, prefabName, position, parent);

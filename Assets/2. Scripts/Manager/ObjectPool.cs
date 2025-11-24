@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPool : MonoBehaviour_Singleton<ObjectPool>
 {
     // 풀 정보 클래스. 유니티에서 보이기 위해 Serializable 사용 
     [System.Serializable]
@@ -14,13 +14,6 @@ public class ObjectPool : MonoBehaviour
 
     public List<Pool> pools;
     private Dictionary<string, Queue<GameObject>> _poolDictionary;
-
-    public static ObjectPool instance;
-
-    private void Awake()
-    {
-        instance = this;
-    }
 
     public void Init()
     {
