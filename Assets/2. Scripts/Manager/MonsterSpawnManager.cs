@@ -4,20 +4,6 @@ using UnityEngine;
 
 public class MonsterSpawnManager : MonoBehaviour
 {
-    /*
-     
-    적을 생성 
-
-    적 생성에 필요한 정보
-    - 스폰 지점
-    - 적 오브젝트 (프리팹)
-    
-    적을 생성하는 방법
-    - Instantiate
-
-
-     */
-
     // 몬스터 변수
     [SerializeField] private Transform _spawnPoint; // 몬스터 스폰 지점 
     [SerializeField] private List<GameObject> _monsterPrefabList; // 몬스터 프리팹 리스트
@@ -53,8 +39,6 @@ public class MonsterSpawnManager : MonoBehaviour
     {
         for(int i = 0; i < _waveMonsterCount.Length; i++)
         {
-            //Debug.Log($"{i+1}번 웨이브 시작");
-
             // i번째 웨이브 시작
             while(_monsterCount != _waveMonsterCount[i])
             {
@@ -67,20 +51,17 @@ public class MonsterSpawnManager : MonoBehaviour
                 _monsterCount++;
             }
 
-            //Debug.Log($"{i+1}번 웨이브 몬스터 소환 끝");
             _monsterCount = 0;
 
             _gameManager.UpdateCurrentWaveNumber(i + 1);
             
             // n초 후 다음 웨이브 시작. 
             yield return new WaitForSeconds(_waveDelay);
-            //Debug.Log("다음 웨이브가 시작됩니다.");
         }
     }
 
     // 리펙토링 필요
     // - n번 웨이브에 여러 종류 몬스터가 나올 수 있게 대비 (여러 몬스터 == 몬스터1, 몬스터2, 보스1, 보스2
-    // - 중복 코드 하나로 통합 
     private void SpawnMonster(int waveNumber)
     {
         GameObject spawnMonster = Instantiate(_monsterPrefabList[waveNumber], _spawnPoint.position, Quaternion.identity); // 스폰 지점에 몬스터 생성 

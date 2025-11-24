@@ -7,8 +7,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-// 리펙토링 : 이름 수정 필요 => UI 스크립트인지 상호작용 스크립트인지 헷갈림. 
-public class UIInteraction : MonoBehaviour
+public class Interaction : MonoBehaviour
 {
     private Vector2 _mouseWorldPos;
     private RaycastHit2D _hit;
@@ -19,7 +18,6 @@ public class UIInteraction : MonoBehaviour
 
     private GameObject _currentHero;
     public int currentTileLayer {  get; private set; }
-    private float level = 1;
 
     private GameObject _victimHero;
 
@@ -91,33 +89,6 @@ public class UIInteraction : MonoBehaviour
                         }
                         return;
                     }
-
-                    // 안 쓰는 코드
-                    // 초월 UI 클릭했으면
-                    if (result.gameObject.layer == 12)
-                    {
-                        // 미네랄이 충분하면
-                        if(_player.ReturnMineral() >= 1.0f)
-                        {
-                            // 재화 소모
-                            _player.stat.SetMineral(-1.0f);
-
-                            // 초월 UI 닫기
-                            _uiManager.InActiveUIAwake();
-
-                            // 영웅 초월 
-                            Vector3 position = _tilemap.GetCellCenterWorld(_tilemap.WorldToCell(_mouseWorldPos));
-                            _gameManager.heroSpawnManager.HeroAwake(_currentHero.GetComponent<Hero>(), position);
-                            //_gameManager.heroSpawnManager.Promotion(_currentHero.GetComponent<Hero>(), position);
-                            _gameManager.heroSpawnManager.Remove(_currentHero);
-                        }
-                        // 미네랄 충분하지 않으면
-                        else
-                        {
-                            // 미네랄 부족 UI 띄우기. 1.5초간. 
-
-                        }
-                    }
                 }
             }
 
@@ -140,9 +111,6 @@ public class UIInteraction : MonoBehaviour
                     // 초월 UI 띄우기.
                     _uiManager.ActiveUIAwake(_currentHitPos);
 
-                    // (다른 곳에서) 초월 UI를 클릭하면 
-                        // 미네랄이 충분하다면
-                            // 영웅 초월 
                     return;
                 }
 
@@ -166,8 +134,6 @@ public class UIInteraction : MonoBehaviour
                 }
             }
 
-            //if (_currentHero != null && _currentHero.GetComponent<Hero>().level < 4) return;
-
             // 일반 블록, 스피드 블록을 클릭하면 
             if (_hit.collider != null && (_hit.collider.gameObject.layer == 8 || _hit.collider.gameObject.layer == 11))
             {
@@ -186,10 +152,6 @@ public class UIInteraction : MonoBehaviour
                         break;
 
                     case UIState.Open:
-                        // 몬스터 생성 UI가 켜져있으면, 다른 곳을 클릭했다면 
-                        // 두 벡터 사이 거리가 별로 길지 않으면 -> 같은 블록을 클릭한 것으로 간주 -> UI 안사라지게 하기. 
-                        // 그냥 현재 클릭한 타일 중심 좌표랑 이전 타일 중심 좌표랑 같은지만 체크하면 되겠는데.
-
                         if (_hit.collider != null)
                         {
                             _currentHitPos = _tilemap.GetCellCenterWorld(_tilemap.WorldToCell(_mouseWorldPos));

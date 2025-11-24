@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIAwakeButton : MonoBehaviour
@@ -27,7 +25,7 @@ public class UIAwakeButton : MonoBehaviour
             // 초월 UI 닫기.
             _uiManager.InActiveUIAwake();
 
-            UIInteraction._uiState = UIState.Close;
+            Interaction._uiState = UIState.Close;
 
             Vector3 position = _player.GetCurrentHitPos();
             GameObject target = _player.GetTargetInfo();

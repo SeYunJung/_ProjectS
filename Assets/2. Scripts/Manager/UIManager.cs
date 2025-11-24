@@ -9,18 +9,6 @@ public enum UIState
 
 public class UIManager : MonoBehaviour
 {
-    /*
-    기능
-    - UI를 키고 끄기.
-
-
-    필요한 변수 
-    - 승리 패배 UI
-     */
-    // 승리 UI
-    // 패배 UI 
-    // 얘네들 모두 띄워주는 용도로 쓰인다. 
-    // 따라서 GameObject로 받아오자. 
     [SerializeField] private UIResult _uiResult;
     [SerializeField] private RectTransform _uiMonsterSummonRect;
     [SerializeField] private UISummonButton _uiSummonButton;
@@ -106,9 +94,6 @@ public class UIManager : MonoBehaviour
 
     public void ActiveUIPromotion(Vector3 worldPos)
     {
-        //_uiMonsterSummonRect.position = worldPos + _blockOffset;
-        //SetActive(_uiMonsterSummonRect.gameObject, true);
-
         _uiPromotionRect.position = worldPos + _blockOffset;
         SetActive(_uiPromotionRect.gameObject, true);
     }

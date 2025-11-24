@@ -3455,7 +3455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6912e6afc9ec7c4c87f0610c177adc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heroPrefabList:
+  _level1HeroList:
   - {fileID: 2768169801486819815, guid: d777b19dfc90533438f64fff22060a5f, type: 3}
   - {fileID: 4344147861724075759, guid: 57de86450276fbf4ba46b14a481c21c5, type: 3}
   - {fileID: 3357396594186502329, guid: d4c9a99f990d8024abcfcf8a8ef1dfa0, type: 3}

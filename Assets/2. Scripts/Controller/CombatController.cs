@@ -26,7 +26,7 @@ public class CombatController : Character
     private MonsterSpawnManager _monsterSpawnManager;
     private ObjectPool _objectPool;
     private List<Monster> _monsterList;
-    public UIInteraction interaction {  get; private set; }
+    public Interaction interaction {  get; private set; }
 
     // 플레이어 초기화
     public override void Init()
@@ -37,7 +37,7 @@ public class CombatController : Character
         _monsterSpawnManager = gameManager.monsterSpawnManager;
         _objectPool = gameManager.objectPool;
         _monsterList = _monsterSpawnManager.monsterList;
-        interaction = GetComponent<UIInteraction>();
+        interaction = GetComponent<Interaction>();
         interaction.Init();
 
         // 스탯 초기화 

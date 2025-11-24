@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIRepairButton : MonoBehaviour
@@ -33,20 +31,7 @@ public class UIRepairButton : MonoBehaviour
 
             // 일반 블록 넣기. 
             _player.interaction.SetTile();
-
-                    
-
-            //UIInteraction._uiState = UIState.Close;
-
-            //Vector3 position = _player.GetCurrentHitPos();
-            //GameObject target = _player.GetTargetInfo();
-            //GameObject victimHero = _player.GetVictimHeroInfo();
-
-            //_gameManager.heroSpawnManager.Remove(target);
-            //_gameManager.heroSpawnManager.Remove(victimHero);
-            //_heroSpawnManager.SpawnAwakeHero(position);
         }
-        // 미네랄이 충분하지 않으면
         else
         {
             // 1.5초 동안 미네랄이 충분하지 않음 UI 띄우기.

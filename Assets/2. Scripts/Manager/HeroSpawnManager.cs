@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,11 +11,11 @@ public class HeroSpawnManager : MonoBehaviour
         Count
     }
 
-    [SerializeField] private List<GameObject> _heroPrefabList; // 영웅 프리팹 리스트
-    [SerializeField] private List<GameObject> _level2HeroList; // 레벨2 영웅 프리팹 리스트 
-    [SerializeField] private List<GameObject> _level3HeroList;
-    [SerializeField] private List<GameObject> _level4HeroList;
-    [SerializeField] private List<GameObject> _level5HeroList;
+    [SerializeField] private List<GameObject> _level1HeroList; // 레벨1 영웅 프리팹 리스트
+    [SerializeField] private List<GameObject> _level2HeroList; // 레벨2 
+    [SerializeField] private List<GameObject> _level3HeroList; // 레벨3
+    [SerializeField] private List<GameObject> _level4HeroList; // 레벨4
+    [SerializeField] private List<GameObject> _level5HeroList; // 레벨5
     public List<Hero> heroList { get; private set; }
 
     public void Init()
@@ -24,35 +23,15 @@ public class HeroSpawnManager : MonoBehaviour
         heroList = new List<Hero>();
     }
 
-    // 리펙토링 : 중복코드 제거 
     public void SpawnHero(Vector3 position, float speed = 0)
     {
         int randomNumber = Random.Range(0, (int)HeroType.Count);
         HeroType heroType = (HeroType)randomNumber;
 
-        switch (heroType)
-        {
-            case HeroType.Warrior:
-                GameObject spawnHero = Instantiate(_heroPrefabList[randomNumber], position, Quaternion.identity);
-                Hero hero = spawnHero.GetComponent<Hero>();
-                hero.Init(speed);
-                heroList.Add(hero);
-                break;
-
-            case HeroType.Archer:
-                GameObject spawnHero1 = Instantiate(_heroPrefabList[randomNumber], position, Quaternion.identity);
-                Hero hero1 = spawnHero1.GetComponent<Hero>();
-                hero1.Init(speed);
-                heroList.Add(hero1);
-                break;
-
-            case HeroType.Mage:
-                GameObject spawnHero2 = Instantiate(_heroPrefabList[randomNumber], position, Quaternion.identity);
-                Hero hero2 = spawnHero2.GetComponent<Hero>();
-                hero2.Init(speed);
-                heroList.Add(hero2);
-                break;
-        }
+        GameObject spawnHero = Instantiate(_level1HeroList[randomNumber], position, Quaternion.identity);
+        Hero hero = spawnHero.GetComponent<Hero>();
+        hero.Init(speed);
+        heroList.Add(hero);
     }
 
     public void SpawnAwakeHero(Vector3 position)
