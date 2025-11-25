@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using UnityEngine;
 
 public class MonsterSpawnManager : MonoBehaviour
@@ -64,7 +65,15 @@ public class MonsterSpawnManager : MonoBehaviour
     // - n번 웨이브에 여러 종류 몬스터가 나올 수 있게 대비 (여러 몬스터 == 몬스터1, 몬스터2, 보스1, 보스2
     private void SpawnMonster(int waveNumber)
     {
-        GameObject spawnMonster = Instantiate(_monsterPrefabList[waveNumber], _spawnPoint.position, Quaternion.identity); // 스폰 지점에 몬스터 생성 
+        GameObject spawnMonster = null;
+        if(waveNumber == 0)
+        {
+            spawnMonster = ResourceManager.instance.CreateCharacter<GameObject>(Prefab.MONSTER1, ObjectManager.instance.spawnPoint.transform.position, ObjectManager.instance.spawnPoint.transform);
+        }
+        else if(waveNumber == 1)
+        {
+            spawnMonster = ResourceManager.instance.CreateCharacter<GameObject>(Prefab.MONSTER2, ObjectManager.instance.spawnPoint.transform.position, ObjectManager.instance.spawnPoint.transform);
+        }
         Monster monster = spawnMonster.GetComponent<Monster>();
         monsterList.Add(monster);
         monster.Init(waveNumber, _targetPoints, _gameManager.player.transform); // 몬스터 상태 초기화 -> 스탯, 이동, 플레이어 정보  

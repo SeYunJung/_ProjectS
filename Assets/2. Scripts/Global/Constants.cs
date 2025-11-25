@@ -20,6 +20,7 @@ public static class ResourcePath
     public const string CHARACTER = "Character/";
     public const string GRID = "Grid/";
     public const string UI = "UI/";
+    public const string OBJECT = "Object/";
 }
 
 public static class Prefab
@@ -28,9 +29,14 @@ public static class Prefab
     public const string GRID = "Grid";
     public const string UI = "UI";
     public const string PROMOTION = "UIPromotion";
+    public const string FIELD = "Field";
+    public const string MONSTER_SPAWNPOINT = "Monster_SpawnPoint";
+    public const string MONSTER1 = "Monster1";
+    public const string MONSTER2 = "Monster2";
 }
 
 public static class Position
 {
     public static readonly UnityEngine.Vector2 PLAYER = new UnityEngine.Vector2(4.5f, 5.54f);
+    public static readonly UnityEngine.Vector2 MONSTER = new UnityEngine.Vector2(-0.875f, 14.3f);
 }

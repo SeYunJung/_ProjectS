@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
         uiResourcePanel.Init();
         _uiAwakeButton.Init();
         _uiRepairButton.Init();
-        uiPromotion = DataManager.instance.uiPromotion;
+        uiPromotion = ObjectManager.instance.uiPromotion;
         _uiPromotionRect = uiPromotion.GetComponent<RectTransform>();
 
         _blockOffset = new Vector3(Pos.BLOCK_OFFSET_X, Pos.BLOCK_OFFSET_Y);

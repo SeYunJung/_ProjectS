@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour_Singleton<GameManager>
     public UIManager uiManager { get; private set; }
     public HeroSpawnManager heroSpawnManager { get; private set; }
     public WorkerSpawnManager workerSpawnManager { get; private set; }
-    public DataManager dataManager { get; private set; }
+    public ObjectManager dataManager { get; private set; }
 
     private int _currentWaveNumber;
 
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour_Singleton<GameManager>
         uiManager = GetComponentInChildren<UIManager>();
         heroSpawnManager = GetComponentInChildren<HeroSpawnManager>();
         workerSpawnManager = GetComponentInChildren<WorkerSpawnManager>();
-        dataManager = DataManager.instance;
+        dataManager = ObjectManager.instance;
 
         GameStart();
     }

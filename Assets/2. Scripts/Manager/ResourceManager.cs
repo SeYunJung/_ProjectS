@@ -19,6 +19,11 @@ public class ResourceManager : MonoBehaviour_Singleton<ResourceManager>
         return CreatePathAndObject<T>(ResourcePath.UI, prefabName, Position, parent);
     }
 
+    public T CreateParentObject<T>(string prefabName, Vector2 position, Transform parent = null) where T : Object
+    {
+        return CreatePathAndObject<T>(ResourcePath.OBJECT, prefabName, position, parent);
+    }
+
     // 경로를 만들고, 프리팹 생성/반환 
     public T CreatePathAndObject<T>(string resourcePath, string prefabName, Vector2 position, Transform parent = null) where T : Object
     {
